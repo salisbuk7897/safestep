@@ -1,0 +1,188 @@
+﻿using SafeStepDesktop.Models;
+using SafeStepDesktop.Services;
+using System.IO.Ports;
+using System.Media;
+
+namespace SafeStep___Desktop__WinForms_
+{
+    public partial class Form1 : Form
+    {
+        private SerialPort? _serialPort;
+        private readonly int[] _baudRates = { 9600, 19200, 38400, 57600, 115200 };
+
+        private ComboBox cmbBaudRate;
+        private ComboBox cmbPorts;
+        private Label lblStatus;
+        private Button btnConnect;
+        private Button btnDisconnect;
+        private ListBox lstMessages;
+        private Panel pnlAlarm;
+        private Label lblAlarm;
+        private Label lblDistance;
+        private Label lblDistanceTime;
+        private ProgressBar progressBattery;
+        private Label lblBattery;
+
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            cmbBaudRate.Items.AddRange(_baudRates.Cast<object>().ToArray());
+            cmbBaudRate.SelectedItem = 115200;
+            RefreshPorts();
+            lblStatus.Text = "Disconnected";
+            btnDisconnect.Enabled = false;
+        }
+
+        private void RefreshPorts()
+        {
+            cmbPorts.Items.Clear();
+            var ports = SerialPort.GetPortNames();
+            cmbPorts.Items.AddRange(ports);
+            if (cmbPorts.Items.Count > 0)
+                cmbPorts.SelectedIndex = 0;
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            RefreshPorts();
+        }
+
+        private void btnConnect_Click(object sender, EventArgs e)
+        {
+            if (cmbPorts.SelectedItem == null) return;
+
+            _serialPort = new SerialPort
+            {
+                PortName = cmbPorts.SelectedItem.ToString(),
+                BaudRate = Convert.ToInt32(cmbBaudRate.SelectedItem),
+                DataBits = 8,
+                Parity = Parity.None,
+                StopBits = StopBits.One,
+                ReadTimeout = 500
+            };
+
+            _serialPort.DataReceived += SerialPort_DataReceived;
+
+            try
+            {
+                _serialPort.Open();
+                lblStatus.Text = $"Connected to {_serialPort.PortName} @ {_serialPort.BaudRate} baud";
+                btnConnect.Enabled = false;
+                btnDisconnect.Enabled = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Connection failed: " + ex.Message);
+            }
+        }
+
+        private void btnDisconnect_Click(object sender, EventArgs e)
+        {
+            if (_serialPort?.IsOpen == true)
+            {
+                _serialPort.Close();
+                _serialPort.Dispose();
+            }
+
+            lblStatus.Text = "Disconnected";
+            btnConnect.Enabled = true;
+            btnDisconnect.Enabled = false;
+        }
+
+        private void SerialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        {
+            try
+            {
+                string data = _serialPort.ReadLine();
+                Invoke(new Action(() => ProcessIncomingData(data)));
+            }
+            catch
+            {
+            }
+        }
+
+        private void ProcessIncomingData(string rawData)
+        {
+            var msg = MessageParser.Parse(rawData);
+            if (msg == null) return;
+
+            lstMessages.Items.Insert(0, $"{msg.Timestamp:HH:mm:ss} [{msg.Type}] {msg.Value}");
+
+            switch (msg.Type)
+            {
+                case MessageType.Alarm:
+                    TriggerAlarmVisual(msg.Value);
+                    break;
+                case MessageType.Distance:
+                    UpdateDistanceDisplay(double.Parse(msg.Value, System.Globalization.CultureInfo.InvariantCulture));
+                    break;
+                case MessageType.Message:
+                    break;
+                case MessageType.Battery:
+                    UpdateBatteryLevel(int.Parse(msg.Value));
+                    break;
+                case MessageType.Heartbeat:
+                    UpdateHeartbeat();
+                    break;
+            }
+        }
+
+        private void TriggerAlarmVisual(string alarmType)
+        {
+            try
+            {
+                SoundPlayer player = new SoundPlayer("Assets/alarm.wav");
+                player.Play();
+            }
+            catch { }
+
+            pnlAlarm.BackColor = Color.Red;
+            lblAlarm.Text = "ALARM: " + alarmType;
+
+            var timer = new System.Windows.Forms.Timer();
+            timer.Interval = 5000;
+            timer.Tick += (s, e) =>
+            {
+                pnlAlarm.BackColor = Color.Green;
+                lblAlarm.Text = "No active alarms";
+                timer.Stop();
+            };
+            timer.Start();
+        }
+                progressBattery.ForeColor = Color.Green;
+            else if (percent > 20)
+                progressBattery.ForeColor = Color.Goldenrod;
+            else
+                progressBattery.ForeColor = Color.Red;
+        }
+
+        private void UpdateHeartbeat()
+        {
+            lblStatus.Text = "Heartbeat OK - " + DateTime.Now.ToString("HH:mm:ss");
+        }
+
+        private void refreshButton_Click(object sender, EventArgs e)
+        {
+            RefreshPorts();
+        }
+
+        private void connectButton_Click(object sender, EventArgs e)
+        {
+            btnConnect_Click(sender, e);
+        }
+
+        private void disconnectButton_Click(object sender, EventArgs e)
+        {
+            btnDisconnect_Click(sender, e);
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+            // Optionally handle label7 click event here
+        }
+    }
+}

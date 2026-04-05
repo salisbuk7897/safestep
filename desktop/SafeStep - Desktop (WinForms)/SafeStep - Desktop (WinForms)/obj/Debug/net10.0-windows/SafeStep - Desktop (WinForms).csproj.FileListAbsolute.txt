@@ -1,0 +1,57 @@
+C:\Users\NIKITA MITEVSKI\source\repos\SafeStep - Desktop (WinForms)\SafeStep - Desktop (WinForms)\bin\Debug\net10.0-windows\SafeStep - Desktop (WinForms).exe
+C:\Users\NIKITA MITEVSKI\source\repos\SafeStep - Desktop (WinForms)\SafeStep - Desktop (WinForms)\bin\Debug\net10.0-windows\SafeStep - Desktop (WinForms).deps.json
+C:\Users\NIKITA MITEVSKI\source\repos\SafeStep - Desktop (WinForms)\SafeStep - Desktop (WinForms)\bin\Debug\net10.0-windows\SafeStep - Desktop (WinForms).runtimeconfig.json
+C:\Users\NIKITA MITEVSKI\source\repos\SafeStep - Desktop (WinForms)\SafeStep - Desktop (WinForms)\bin\Debug\net10.0-windows\SafeStep - Desktop (WinForms).dll
+C:\Users\NIKITA MITEVSKI\source\repos\SafeStep - Desktop (WinForms)\SafeStep - Desktop (WinForms)\bin\Debug\net10.0-windows\SafeStep - Desktop (WinForms).pdb
+C:\Users\NIKITA MITEVSKI\source\repos\SafeStep - Desktop (WinForms)\SafeStep - Desktop (WinForms)\bin\Debug\net10.0-windows\CommunityToolkit.Mvvm.dll
+C:\Users\NIKITA MITEVSKI\source\repos\SafeStep - Desktop (WinForms)\SafeStep - Desktop (WinForms)\bin\Debug\net10.0-windows\HarfBuzzSharp.dll
+C:\Users\NIKITA MITEVSKI\source\repos\SafeStep - Desktop (WinForms)\SafeStep - Desktop (WinForms)\bin\Debug\net10.0-windows\LiveChartsCore.dll
+C:\Users\NIKITA MITEVSKI\source\repos\SafeStep - Desktop (WinForms)\SafeStep - Desktop (WinForms)\bin\Debug\net10.0-windows\LiveChartsCore.SkiaSharpView.dll
+C:\Users\NIKITA MITEVSKI\source\repos\SafeStep - Desktop (WinForms)\SafeStep - Desktop (WinForms)\bin\Debug\net10.0-windows\LiveChartsCore.SkiaSharpView.WinForms.dll
+C:\Users\NIKITA MITEVSKI\source\repos\SafeStep - Desktop (WinForms)\SafeStep - Desktop (WinForms)\bin\Debug\net10.0-windows\OpenTK.dll
+C:\Users\NIKITA MITEVSKI\source\repos\SafeStep - Desktop (WinForms)\SafeStep - Desktop (WinForms)\bin\Debug\net10.0-windows\OpenTK.GLControl.dll
+C:\Users\NIKITA MITEVSKI\source\repos\SafeStep - Desktop (WinForms)\SafeStep - Desktop (WinForms)\bin\Debug\net10.0-windows\SkiaSharp.dll
+C:\Users\NIKITA MITEVSKI\source\repos\SafeStep - Desktop (WinForms)\SafeStep - Desktop (WinForms)\bin\Debug\net10.0-windows\SkiaSharp.HarfBuzz.dll
+C:\Users\NIKITA MITEVSKI\source\repos\SafeStep - Desktop (WinForms)\SafeStep - Desktop (WinForms)\bin\Debug\net10.0-windows\SkiaSharp.Views.Desktop.Common.dll
+C:\Users\NIKITA MITEVSKI\source\repos\SafeStep - Desktop (WinForms)\SafeStep - Desktop (WinForms)\bin\Debug\net10.0-windows\SkiaSharp.Views.WindowsForms.dll
+C:\Users\NIKITA MITEVSKI\source\repos\SafeStep - Desktop (WinForms)\SafeStep - Desktop (WinForms)\bin\Debug\net10.0-windows\System.IO.Ports.dll
+C:\Users\NIKITA MITEVSKI\source\repos\SafeStep - Desktop (WinForms)\SafeStep - Desktop (WinForms)\bin\Debug\net10.0-windows\runtimes\osx\native\libHarfBuzzSharp.dylib
+C:\Users\NIKITA MITEVSKI\source\repos\SafeStep - Desktop (WinForms)\SafeStep - Desktop (WinForms)\bin\Debug\net10.0-windows\runtimes\win-arm64\native\libHarfBuzzSharp.dll
+C:\Users\NIKITA MITEVSKI\source\repos\SafeStep - Desktop (WinForms)\SafeStep - Desktop (WinForms)\bin\Debug\net10.0-windows\runtimes\win-x64\native\libHarfBuzzSharp.dll
+C:\Users\NIKITA MITEVSKI\source\repos\SafeStep - Desktop (WinForms)\SafeStep - Desktop (WinForms)\bin\Debug\net10.0-windows\runtimes\win-x86\native\libHarfBuzzSharp.dll
+C:\Users\NIKITA MITEVSKI\source\repos\SafeStep - Desktop (WinForms)\SafeStep - Desktop (WinForms)\bin\Debug\net10.0-windows\runtimes\android-arm\native\libSystem.IO.Ports.Native.so
+C:\Users\NIKITA MITEVSKI\source\repos\SafeStep - Desktop (WinForms)\SafeStep - Desktop (WinForms)\bin\Debug\net10.0-windows\runtimes\android-arm64\native\libSystem.IO.Ports.Native.so
+C:\Users\NIKITA MITEVSKI\source\repos\SafeStep - Desktop (WinForms)\SafeStep - Desktop (WinForms)\bin\Debug\net10.0-windows\runtimes\android-x64\native\libSystem.IO.Ports.Native.so
+C:\Users\NIKITA MITEVSKI\source\repos\SafeStep - Desktop (WinForms)\SafeStep - Desktop (WinForms)\bin\Debug\net10.0-windows\runtimes\android-x86\native\libSystem.IO.Ports.Native.so
+C:\Users\NIKITA MITEVSKI\source\repos\SafeStep - Desktop (WinForms)\SafeStep - Desktop (WinForms)\bin\Debug\net10.0-windows\runtimes\linux-arm\native\libSystem.IO.Ports.Native.so
+C:\Users\NIKITA MITEVSKI\source\repos\SafeStep - Desktop (WinForms)\SafeStep - Desktop (WinForms)\bin\Debug\net10.0-windows\runtimes\linux-arm64\native\libSystem.IO.Ports.Native.so
+C:\Users\NIKITA MITEVSKI\source\repos\SafeStep - Desktop (WinForms)\SafeStep - Desktop (WinForms)\bin\Debug\net10.0-windows\runtimes\linux-bionic-arm64\native\libSystem.IO.Ports.Native.so
+C:\Users\NIKITA MITEVSKI\source\repos\SafeStep - Desktop (WinForms)\SafeStep - Desktop (WinForms)\bin\Debug\net10.0-windows\runtimes\linux-bionic-x64\native\libSystem.IO.Ports.Native.so
+C:\Users\NIKITA MITEVSKI\source\repos\SafeStep - Desktop (WinForms)\SafeStep - Desktop (WinForms)\bin\Debug\net10.0-windows\runtimes\linux-musl-arm\native\libSystem.IO.Ports.Native.so
+C:\Users\NIKITA MITEVSKI\source\repos\SafeStep - Desktop (WinForms)\SafeStep - Desktop (WinForms)\bin\Debug\net10.0-windows\runtimes\linux-musl-arm64\native\libSystem.IO.Ports.Native.so
+C:\Users\NIKITA MITEVSKI\source\repos\SafeStep - Desktop (WinForms)\SafeStep - Desktop (WinForms)\bin\Debug\net10.0-windows\runtimes\linux-musl-x64\native\libSystem.IO.Ports.Native.so
+C:\Users\NIKITA MITEVSKI\source\repos\SafeStep - Desktop (WinForms)\SafeStep - Desktop (WinForms)\bin\Debug\net10.0-windows\runtimes\linux-x64\native\libSystem.IO.Ports.Native.so
+C:\Users\NIKITA MITEVSKI\source\repos\SafeStep - Desktop (WinForms)\SafeStep - Desktop (WinForms)\bin\Debug\net10.0-windows\runtimes\maccatalyst-arm64\native\libSystem.IO.Ports.Native.dylib
+C:\Users\NIKITA MITEVSKI\source\repos\SafeStep - Desktop (WinForms)\SafeStep - Desktop (WinForms)\bin\Debug\net10.0-windows\runtimes\maccatalyst-x64\native\libSystem.IO.Ports.Native.dylib
+C:\Users\NIKITA MITEVSKI\source\repos\SafeStep - Desktop (WinForms)\SafeStep - Desktop (WinForms)\bin\Debug\net10.0-windows\runtimes\osx-arm64\native\libSystem.IO.Ports.Native.dylib
+C:\Users\NIKITA MITEVSKI\source\repos\SafeStep - Desktop (WinForms)\SafeStep - Desktop (WinForms)\bin\Debug\net10.0-windows\runtimes\osx-x64\native\libSystem.IO.Ports.Native.dylib
+C:\Users\NIKITA MITEVSKI\source\repos\SafeStep - Desktop (WinForms)\SafeStep - Desktop (WinForms)\bin\Debug\net10.0-windows\runtimes\osx\native\libSkiaSharp.dylib
+C:\Users\NIKITA MITEVSKI\source\repos\SafeStep - Desktop (WinForms)\SafeStep - Desktop (WinForms)\bin\Debug\net10.0-windows\runtimes\win-arm64\native\libSkiaSharp.dll
+C:\Users\NIKITA MITEVSKI\source\repos\SafeStep - Desktop (WinForms)\SafeStep - Desktop (WinForms)\bin\Debug\net10.0-windows\runtimes\win-x64\native\libSkiaSharp.dll
+C:\Users\NIKITA MITEVSKI\source\repos\SafeStep - Desktop (WinForms)\SafeStep - Desktop (WinForms)\bin\Debug\net10.0-windows\runtimes\win-x86\native\libSkiaSharp.dll
+C:\Users\NIKITA MITEVSKI\source\repos\SafeStep - Desktop (WinForms)\SafeStep - Desktop (WinForms)\bin\Debug\net10.0-windows\runtimes\unix\lib\net10.0\System.IO.Ports.dll
+C:\Users\NIKITA MITEVSKI\source\repos\SafeStep - Desktop (WinForms)\SafeStep - Desktop (WinForms)\bin\Debug\net10.0-windows\runtimes\win\lib\net10.0\System.IO.Ports.dll
+C:\Users\NIKITA MITEVSKI\source\repos\SafeStep - Desktop (WinForms)\SafeStep - Desktop (WinForms)\obj\Debug\net10.0-windows\SafeStep - Desktop (WinForms).csproj.AssemblyReference.cache
+C:\Users\NIKITA MITEVSKI\source\repos\SafeStep - Desktop (WinForms)\SafeStep - Desktop (WinForms)\obj\Debug\net10.0-windows\SafeStep___Desktop__WinForms_.Form1.resources
+C:\Users\NIKITA MITEVSKI\source\repos\SafeStep - Desktop (WinForms)\SafeStep - Desktop (WinForms)\obj\Debug\net10.0-windows\SafeStep - Desktop (WinForms).csproj.GenerateResource.cache
+C:\Users\NIKITA MITEVSKI\source\repos\SafeStep - Desktop (WinForms)\SafeStep - Desktop (WinForms)\obj\Debug\net10.0-windows\SafeStep - Desktop (WinForms).GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\NIKITA MITEVSKI\source\repos\SafeStep - Desktop (WinForms)\SafeStep - Desktop (WinForms)\obj\Debug\net10.0-windows\SafeStep - Desktop (WinForms).AssemblyInfoInputs.cache
+C:\Users\NIKITA MITEVSKI\source\repos\SafeStep - Desktop (WinForms)\SafeStep - Desktop (WinForms)\obj\Debug\net10.0-windows\SafeStep - Desktop (WinForms).AssemblyInfo.cs
+C:\Users\NIKITA MITEVSKI\source\repos\SafeStep - Desktop (WinForms)\SafeStep - Desktop (WinForms)\obj\Debug\net10.0-windows\SafeStep - Desktop (WinForms).csproj.CoreCompileInputs.cache
+C:\Users\NIKITA MITEVSKI\source\repos\SafeStep - Desktop (WinForms)\SafeStep - Desktop (WinForms)\obj\Debug\net10.0-windows\SafeStep.1B550F6F.Up2Date
+C:\Users\NIKITA MITEVSKI\source\repos\SafeStep - Desktop (WinForms)\SafeStep - Desktop (WinForms)\obj\Debug\net10.0-windows\SafeStep - Desktop (WinForms).dll
+C:\Users\NIKITA MITEVSKI\source\repos\SafeStep - Desktop (WinForms)\SafeStep - Desktop (WinForms)\obj\Debug\net10.0-windows\refint\SafeStep - Desktop (WinForms).dll
+C:\Users\NIKITA MITEVSKI\source\repos\SafeStep - Desktop (WinForms)\SafeStep - Desktop (WinForms)\obj\Debug\net10.0-windows\SafeStep - Desktop (WinForms).pdb
+C:\Users\NIKITA MITEVSKI\source\repos\SafeStep - Desktop (WinForms)\SafeStep - Desktop (WinForms)\obj\Debug\net10.0-windows\SafeStep - Desktop (WinForms).genruntimeconfig.cache
+C:\Users\NIKITA MITEVSKI\source\repos\SafeStep - Desktop (WinForms)\SafeStep - Desktop (WinForms)\obj\Debug\net10.0-windows\ref\SafeStep - Desktop (WinForms).dll
+C:\Users\NIKITA MITEVSKI\source\repos\SafeStep - Desktop (WinForms)\SafeStep - Desktop (WinForms)\bin\Debug\net10.0-windows\Assets\alarm.wav
