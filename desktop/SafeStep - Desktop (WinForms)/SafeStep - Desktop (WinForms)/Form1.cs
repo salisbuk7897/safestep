@@ -8,11 +8,41 @@ using System.Globalization;
 
 namespace SafeStep___Desktop__WinForms_
 {
+    /// <summary>
+    /// Main application window for the SafeStep desktop app.
+    ///
+    /// Responsibilities:
+    ///   - Connect/disconnect to the SafeStep dongle via a COM serial port
+    ///   - Receive and parse incoming tag data from the dongle
+    ///   - Display zone warnings, battery level, RSSI, and tag status in the UI
+    ///   - Send commands (PING, STATUS, SOS) to the dongle on demand
+    ///   - Open the Options window for BLE device pairing and port configuration
+    /// </summary>
     public partial class Form1 : Form
     {
+        /// <summary>
+        /// The active serial port connection to the SafeStep dongle.
+        /// Null when disconnected. Created on Connect, disposed on Disconnect.
+        /// </summary>
         private SerialPort? _serialPort;
+
+        /// <summary>
+        /// Available baud rates shown in the dropdown.
+        /// The dongle uses 115200 by default (per the protocol guide).
+        /// </summary>
         private readonly int[] _baudRates = { 9600, 19200, 38400, 57600, 115200 };
+
+        /// <summary>
+        /// Rolling list of recent distance/RSSI values used to draw the live chart.
+        /// Capped at 20 entries — oldest values are removed as new ones arrive.
+        /// </summary>
         private List<double> _distanceValues = new() { 0 };
+
+        /// <summary>
+        /// Incomplete serial data buffer.
+        /// The serial port may deliver partial lines — we accumulate them here
+        /// and only process complete lines (ending with \n).
+        /// </summary>
         private string _serialBuffer = "";
 
         public Form1()
@@ -20,24 +50,34 @@ namespace SafeStep___Desktop__WinForms_
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Runs when the form first loads.
+        /// Sets up the baud rate dropdown, refreshes COM ports,
+        /// initializes all UI labels to their default "idle" states,
+        /// and sets up the live distance chart with an empty dataset.
+        /// </summary>
         private void Form1_Load(object sender, EventArgs e)
         {
+            // Populate baud rate dropdown and pre-select 115200 (dongle default)
             cmbBaudRate.Items.Clear();
             cmbBaudRate.Items.AddRange(_baudRates.Cast<object>().ToArray());
             cmbBaudRate.SelectedItem = 115200;
 
             RefreshPorts();
 
+            // Set UI to disconnected state
             lblStatus.Text = "Disconnected";
             btnDisconnect.Enabled = false;
             btnConnect.Enabled = true;
 
+            // Set all display labels to default idle values
             lblAlarm.Text = "No active alarms";
             lblDistance.Text = "0.0 m";
             lblDistanceTime.Text = "Last updated: --:--";
             lblBattery.Text = "0%";
             progressBattery.Value = 0;
 
+            // Initialize the live chart with an empty dataset
             distanceChart.Series = new ISeries[]
             {
                 new LineSeries<double>
@@ -46,9 +86,13 @@ namespace SafeStep___Desktop__WinForms_
                     Fill = null
                 }
             };
-           
         }
 
+        /// <summary>
+        /// Scans for available COM ports and populates the ports dropdown.
+        /// Auto-selects the first available port.
+        /// Called on load and when the user clicks the Refresh button.
+        /// </summary>
         private void RefreshPorts()
         {
             cmbPorts.Items.Clear();
@@ -59,11 +103,21 @@ namespace SafeStep___Desktop__WinForms_
                 cmbPorts.SelectedIndex = 0;
         }
 
+        /// <summary>
+        /// Handles the Refresh Ports button click.
+        /// Re-scans for available COM ports in case the dongle was plugged in after the app started.
+        /// </summary>
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             RefreshPorts();
         }
 
+        /// <summary>
+        /// Handles the Connect button click.
+        /// Opens a serial port connection to the selected COM port at the selected baud rate.
+        /// Registers the DataReceived event handler so incoming data is processed automatically.
+        /// Updates the UI to show the connected state.
+        /// </summary>
         private void btnConnect_Click(object sender, EventArgs e)
         {
             if (cmbPorts.SelectedItem == null || cmbBaudRate.SelectedItem == null)
@@ -85,6 +139,7 @@ namespace SafeStep___Desktop__WinForms_
                     NewLine = "\r"
                 };
 
+                // Subscribe to DataReceived — fires whenever the dongle sends data
                 _serialPort.DataReceived += SerialPort_DataReceived;
                 _serialPort.Open();
 
@@ -98,6 +153,11 @@ namespace SafeStep___Desktop__WinForms_
             }
         }
 
+        /// <summary>
+        /// Handles the Disconnect button click.
+        /// Closes and disposes the serial port safely.
+        /// Updates the UI back to the disconnected state.
+        /// </summary>
         private void btnDisconnect_Click(object sender, EventArgs e)
         {
             try
@@ -108,36 +168,48 @@ namespace SafeStep___Desktop__WinForms_
                     _serialPort.Dispose();
                 }
             }
-            catch
-            {
-            }
+            catch { }
 
             lblStatus.Text = "Disconnected";
             btnConnect.Enabled = true;
             btnDisconnect.Enabled = false;
         }
 
-
-
+        /// <summary>
+        /// Fires on a background thread whenever the serial port receives new data.
+        /// Appends incoming bytes to _serialBuffer, then extracts and processes
+        /// any complete lines (lines ending with \n).
+        ///
+        /// Why buffering? The serial port may deliver data in chunks — a single message
+        /// might arrive in two separate DataReceived events. Buffering ensures we only
+        /// process complete lines, never partial ones.
+        ///
+        /// Uses Invoke() to marshal UI updates back to the UI thread safely.
+        /// </summary>
         private void SerialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             try
             {
                 if (_serialPort == null || !_serialPort.IsOpen) return;
 
+                // Read whatever bytes are available right now
                 string incoming = _serialPort.ReadExisting();
                 if (string.IsNullOrEmpty(incoming)) return;
 
+                // Append to buffer — may contain an incomplete line at the end
                 _serialBuffer += incoming;
 
+                // Normalize all line endings to \n for consistent splitting
                 string normalized = _serialBuffer.Replace("\r\n", "\n").Replace("\r", "\n");
                 string[] parts = normalized.Split('\n');
 
+                // Process all complete lines (all except the last, which may be incomplete)
                 for (int i = 0; i < parts.Length - 1; i++)
                 {
                     string line = parts[i].Trim();
                     if (!string.IsNullOrWhiteSpace(line))
                     {
+                        // Marshal to UI thread — UI controls can only be updated from UI thread
                         Invoke(new Action(() =>
                         {
                             lstMessages.Items.Insert(0, "LINE >>> " + line);
@@ -146,6 +218,7 @@ namespace SafeStep___Desktop__WinForms_
                     }
                 }
 
+                // Keep the incomplete last fragment in the buffer for next time
                 _serialBuffer = parts[^1];
             }
             catch (Exception ex)
@@ -157,74 +230,111 @@ namespace SafeStep___Desktop__WinForms_
             }
         }
 
+        /// <summary>
+        /// Takes one complete raw line from the serial port and processes it.
+        /// Calls MessageParser.Parse() to convert the raw string into a SafeStepMessage.
+        /// Then updates the UI based on the message content:
+        ///   - Battery level → progress bar + label
+        ///   - Zone warnings → alarm panel color + sound
+        ///   - RSSI → distance chart
+        ///   - IsAlive = false → "Tag Lost" warning
+        ///
+        /// If parsing fails (null returned), logs a failure message to the list.
+        /// </summary>
         private void ProcessIncomingData(string rawData)
         {
             var msg = MessageParser.Parse(rawData);
+
+            // If the parser couldn't make sense of the line, log it and stop
             if (msg == null)
             {
                 lstMessages.Items.Insert(0, "PARSE FAILED FOR: " + rawData);
                 return;
             }
 
-            lstMessages.Items.Insert(0, $"{msg.Timestamp:HH:mm:ss} [{msg.Type}] {msg.Value}");
+            // Log the parsed message summary to the message list
+            lstMessages.Items.Insert(0,
+                $"{msg.Timestamp:HH:mm:ss} | {msg.TagName} ({msg.TagId}) | BAT:{msg.Battery}% | " +
+                $"Z1:{(msg.Zone1 ? "⚠" : "OK")} Z2:{(msg.Zone2 ? "⚠" : "OK")} Z3:{(msg.Zone3 ? "🚨" : "OK")}");
 
-            switch (msg.Type)
+            // Update battery display
+            UpdateBatteryLevel(msg.Battery);
+
+            // Update RSSI/distance chart if RSSI data is present
+            if (!string.IsNullOrEmpty(msg.Rssi) &&
+                double.TryParse(msg.Rssi, NumberStyles.Any, CultureInfo.InvariantCulture, out double rssi))
             {
-                case MessageType.Alarm:
-                    TriggerAlarmVisual(msg.Value);
-                    break;
+                UpdateDistanceDisplay(rssi);
+            }
 
-                case MessageType.Distance:
-                    if (double.TryParse(msg.Value, NumberStyles.Any, CultureInfo.InvariantCulture, out double meters))
-                        UpdateDistanceDisplay(meters);
-                    break;
+            // Handle tag lost (PING=0)
+            if (!msg.IsAlive)
+            {
+                TriggerZoneWarning("TAG LOST", Color.Gray);
+                return;
+            }
 
-                case MessageType.Message:
-                    break;
-
-                case MessageType.Battery:
-                    if (int.TryParse(msg.Value, out int percent))
-                        UpdateBatteryLevel(percent);
-                    break;
-
-                case MessageType.Heartbeat:
-                    UpdateHeartbeat();
-                    break;
+            // Zone 3 is most critical — check it first (red alarm + sound)
+            if (msg.Zone3)
+            {
+                TriggerZoneWarning("ZONE 3 — CRITICAL (>10m)", Color.Red);
+            }
+            // Zone 2 is medium severity (orange + beep)
+            else if (msg.Zone2)
+            {
+                TriggerZoneWarning("ZONE 2 — WARNING (5–10m)", Color.Orange);
+            }
+            // Zone 1 is a mild warning (yellow)
+            else if (msg.Zone1)
+            {
+                TriggerZoneWarning("ZONE 1 — CAUTION (3–5m)", Color.Yellow);
+            }
+            // All zones clear — reset alarm panel to green
+            else
+            {
+                pnlAlarm.BackColor = Color.LightGreen;
+                lblAlarm.Text = $"All clear — {msg.TagName} in safe range";
             }
         }
 
-        private void TriggerAlarmVisual(string alarmType)
+        /// <summary>
+        /// Updates the alarm panel with the given message and background color.
+        /// For red (Zone 3) warnings, also plays the alarm sound.
+        /// Automatically resets the panel back to green after 5 seconds.
+        ///
+        /// Why a timer? We don't want the alarm to stay on screen forever —
+        /// after 5 seconds with no new critical message, it resets automatically.
+        /// </summary>
+        /// <param name="warningText">Text to display in the alarm label</param>
+        /// <param name="color">Background color of the alarm panel</param>
+        private void TriggerZoneWarning(string warningText, Color color)
         {
-            try
+            // Only play alarm sound for critical Zone 3 (red)
+            if (color == Color.Red)
             {
-                string soundPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Assets", "alarm.wav");
+                try
+                {
+                    string soundPath = Path.Combine(
+                        AppDomain.CurrentDomain.BaseDirectory, "Assets", "alarm.wav");
 
-                if (File.Exists(soundPath))
-                {
-                    using SoundPlayer player = new SoundPlayer(soundPath);
-                    player.Load();
-                    player.Play();
+                    if (File.Exists(soundPath))
+                    {
+                        using SoundPlayer player = new SoundPlayer(soundPath);
+                        player.Load();
+                        player.Play();
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    MessageBox.Show("alarm.wav not found at: " + soundPath);
+                    lstMessages.Items.Insert(0, "Sound error: " + ex.Message);
                 }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Sound error: " + ex.Message);
-            }
 
-            string alarmText = alarmType.ToUpper() switch
-            {
-                "FALL" => "FALL DETECTED!",
-                "SOS" => "SOS ALERT!",
-                _ => alarmType
-            };
+            // Update the alarm panel
+            pnlAlarm.BackColor = color;
+            lblAlarm.Text = "ALARM: " + warningText;
 
-            pnlAlarm.BackColor = Color.Red;
-            lblAlarm.Text = "ALARM: " + alarmText;
-
+            // Auto-reset after 5 seconds
             var timer = new System.Windows.Forms.Timer();
             timer.Interval = 5000;
             timer.Tick += (s, e) =>
@@ -236,13 +346,23 @@ namespace SafeStep___Desktop__WinForms_
             };
             timer.Start();
         }
-        private void UpdateDistanceDisplay(double meters)
-        {
-            _distanceValues.Add(meters);
 
+        /// <summary>
+        /// Updates the live distance/RSSI chart with a new value.
+        /// Keeps a rolling window of the last 20 values so the chart
+        /// doesn't grow forever and stays readable.
+        /// Also updates the distance label and "last updated" timestamp.
+        /// </summary>
+        /// <param name="value">New RSSI or distance value to add to the chart</param>
+        private void UpdateDistanceDisplay(double value)
+        {
+            _distanceValues.Add(value);
+
+            // Keep only the last 20 values (rolling window)
             if (_distanceValues.Count > 20)
                 _distanceValues.RemoveAt(0);
 
+            // Rebuild the chart series with the updated values
             distanceChart.Series = new ISeries[]
             {
                 new LineSeries<double>
@@ -252,24 +372,107 @@ namespace SafeStep___Desktop__WinForms_
                 }
             };
 
-            lblDistance.Text = meters.ToString("F1") + " m";
+            lblDistance.Text = value.ToString("F1") + " m";
             lblDistanceTime.Text = "Last updated: " + DateTime.Now.ToString("HH:mm:ss");
         }
 
+        /// <summary>
+        /// Updates the battery progress bar and label with the new percentage.
+        /// Clamps the value between 0 and 100 to prevent UI crashes from
+        /// out-of-range values sent by faulty firmware.
+        /// </summary>
+        /// <param name="percent">Battery level from the tag (0–100)</param>
         private void UpdateBatteryLevel(int percent)
         {
+            // Clamp to valid range — firmware bugs could send values outside 0-100
             percent = Math.Max(0, Math.Min(100, percent));
             progressBattery.Value = percent;
             lblBattery.Text = percent + "%";
         }
 
-        private void UpdateHeartbeat()
+        /// <summary>
+        /// Sends a command string to the dongle over the serial port.
+        /// Command format: $CMD,COMMANDNAME (e.g. $CMD,PING)
+        ///
+        /// Uses async/await with Task.Run() to move the blocking WriteLine()
+        /// off the UI thread — without this, the UI would freeze while waiting
+        /// for the serial port to finish writing (especially noticeable at low baud rates).
+        ///
+        /// After sending, logs the command to the message list so the user can
+        /// see what was sent and when.
+        /// </summary>
+        /// <param name="cmd">The command name to send, e.g. "PING", "STATUS", "SOS"</param>
+        private async void SendCommand(string cmd)
         {
-            lblStatus.Text = "Heartbeat OK - " + DateTime.Now.ToString("HH:mm:ss");
+            if (_serialPort == null || !_serialPort.IsOpen)
+            {
+                MessageBox.Show("Not connected. Please connect to the dongle first.");
+                return;
+            }
+            
+            try
+            {
+                string message = $"$CMD,{cmd}";
+
+                // Run WriteLine on a background thread to avoid freezing the UI
+                await Task.Run(() => _serialPort.WriteLine(message));
+
+                lstMessages.Items.Insert(0, $"SENT >>> {message}");
+            }
+            catch (Exception ex)
+            {
+                lstMessages.Items.Insert(0, "SEND ERROR: " + ex.Message);
+            }
         }
 
-        private void statusStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        /// <summary>
+        /// Sends a PING command to the dongle.
+        /// PING asks the dongle "are you there?" — the dongle should reply
+        /// with a heartbeat or status message to confirm it's alive.
+        /// </summary>
+        private void btnPing_Click(object sender, EventArgs e)
         {
+            SendCommand("PING");
         }
+
+        /// <summary>
+        /// Sends a STATUS command to the dongle.
+        /// STATUS asks the dongle to immediately send the current state
+        /// of all paired tags — useful to get a snapshot without waiting
+        /// for the next automatic broadcast.
+        /// </summary>
+        private void btnStatus_Click(object sender, EventArgs e)
+        {
+            SendCommand("STATUS");
+        }
+
+        /// <summary>
+        /// Sends an SOS command to the dongle.
+        /// SOS triggers emergency behavior on the wristband tag —
+        /// the exact behavior depends on Alejandro's firmware implementation.
+        /// Typically causes the wristband to vibrate/beep and the dongle to
+        /// broadcast a priority alert.
+        /// </summary>
+        private void btnSos_Click(object sender, EventArgs e)
+        {
+            SendCommand("SOS");
+        }
+
+        /// <summary>
+        /// Opens the Options window as a modal dialog.
+        /// The Options window handles BLE device scanning, pairing, COM port
+        /// configuration, and baud rate settings.
+        /// Using ShowDialog() means the main window is blocked until Options is closed.
+        /// </summary>
+        private void btnOptions_Click(object sender, EventArgs e)
+        {
+            using (var optionsForm = new Options())
+            {
+                optionsForm.ShowDialog(this);
+            }
+        }
+
+        private void statusStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e) { }
+        private void cmbBaudRate_SelectedIndexChanged(object sender, EventArgs e) { }
     }
 }

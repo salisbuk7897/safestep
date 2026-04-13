@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\NIKITA MITEVSKI\\source\\repos\\SafeStep - Desktop (WinForms)\\SafeStep - Desktop (WinForms)\\SafeStep - Desktop (WinForms).csproj": {}
+    "C:\\Users\\NIKITA MITEVSKI\\source\\repos\\safestep\\desktop\\SafeStep - Desktop (WinForms)\\SafeStep - Desktop (WinForms)\\SafeStep - Desktop (WinForms).csproj": {}
   },
   "projects": {
-    "C:\\Users\\NIKITA MITEVSKI\\source\\repos\\SafeStep - Desktop (WinForms)\\SafeStep - Desktop (WinForms)\\SafeStep - Desktop (WinForms).csproj": {
+    "C:\\Users\\NIKITA MITEVSKI\\source\\repos\\safestep\\desktop\\SafeStep - Desktop (WinForms)\\SafeStep - Desktop (WinForms)\\SafeStep - Desktop (WinForms).csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\NIKITA MITEVSKI\\source\\repos\\SafeStep - Desktop (WinForms)\\SafeStep - Desktop (WinForms)\\SafeStep - Desktop (WinForms).csproj",
+        "projectUniqueName": "C:\\Users\\NIKITA MITEVSKI\\source\\repos\\safestep\\desktop\\SafeStep - Desktop (WinForms)\\SafeStep - Desktop (WinForms)\\SafeStep - Desktop (WinForms).csproj",
         "projectName": "SafeStep - Desktop (WinForms)",
-        "projectPath": "C:\\Users\\NIKITA MITEVSKI\\source\\repos\\SafeStep - Desktop (WinForms)\\SafeStep - Desktop (WinForms)\\SafeStep - Desktop (WinForms).csproj",
+        "projectPath": "C:\\Users\\NIKITA MITEVSKI\\source\\repos\\safestep\\desktop\\SafeStep - Desktop (WinForms)\\SafeStep - Desktop (WinForms)\\SafeStep - Desktop (WinForms).csproj",
         "packagesPath": "C:\\Users\\NIKITA MITEVSKI\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\NIKITA MITEVSKI\\source\\repos\\SafeStep - Desktop (WinForms)\\SafeStep - Desktop (WinForms)\\obj\\",
+        "outputPath": "C:\\Users\\NIKITA MITEVSKI\\source\\repos\\safestep\\desktop\\SafeStep - Desktop (WinForms)\\SafeStep - Desktop (WinForms)\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -22,7 +22,7 @@
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net10.0-windows"
+          "net10.0-windows10.0.19041.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
@@ -30,8 +30,8 @@
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net10.0-windows7.0": {
-            "targetAlias": "net10.0-windows",
+          "net10.0-windows10.0.19041": {
+            "targetAlias": "net10.0-windows10.0.19041.0",
             "projectReferences": {}
           }
         },
@@ -48,8 +48,8 @@
         "SdkAnalysisLevel": "10.0.200"
       },
       "frameworks": {
-        "net10.0-windows7.0": {
-          "targetAlias": "net10.0-windows",
+        "net10.0-windows10.0.19041": {
+          "targetAlias": "net10.0-windows10.0.19041.0",
           "dependencies": {
             "CommunityToolkit.Mvvm": {
               "target": "Package",
@@ -75,8 +75,17 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.Windows.SDK.NET.Ref",
+              "version": "[10.0.19041.57, 10.0.19041.57]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            },
+            "Microsoft.Windows.SDK.NET.Ref.Windows": {
               "privateAssets": "all"
             },
             "Microsoft.WindowsDesktop.App.WindowsForms": {

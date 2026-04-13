@@ -53,6 +53,10 @@
             statusStrip1 = new StatusStrip();
             lblStatus = new ToolStripStatusLabel();
             lstMessages = new ListBox();
+            btnOptions = new Button();
+            btnSos = new Button();
+            btnStatus = new Button();
+            btnPing = new Button();
             flowLayoutPanel1.SuspendLayout();
             flowLayoutPanel2.SuspendLayout();
             flowLayoutPanel3.SuspendLayout();
@@ -70,6 +74,7 @@
             // 
             // btnRefresh
             // 
+            btnRefresh.Cursor = Cursors.Hand;
             btnRefresh.Location = new Point(220, 18);
             btnRefresh.Name = "btnRefresh";
             btnRefresh.Size = new Size(75, 27);
@@ -80,6 +85,7 @@
             // 
             // btnConnect
             // 
+            btnConnect.Cursor = Cursors.Hand;
             btnConnect.Location = new Point(445, 18);
             btnConnect.Name = "btnConnect";
             btnConnect.Size = new Size(80, 27);
@@ -90,6 +96,7 @@
             // 
             // btnDisconnect
             // 
+            btnDisconnect.Cursor = Cursors.Hand;
             btnDisconnect.Location = new Point(535, 18);
             btnDisconnect.Name = "btnDisconnect";
             btnDisconnect.Size = new Size(92, 27);
@@ -113,17 +120,21 @@
             // 
             // lblAlarm
             // 
+            lblAlarm.Anchor = AnchorStyles.Left;
             lblAlarm.AutoSize = true;
+            lblAlarm.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblAlarm.Location = new Point(13, 10);
             lblAlarm.Name = "lblAlarm";
-            lblAlarm.Size = new Size(50, 17);
+            lblAlarm.Size = new Size(88, 30);
             lblAlarm.TabIndex = 0;
             lblAlarm.Text = "ALARM";
+            lblAlarm.TextAlign = ContentAlignment.TopCenter;
             // 
             // pnlAlarm
             // 
             pnlAlarm.BackColor = Color.LightGreen;
-            pnlAlarm.Location = new Point(13, 30);
+            pnlAlarm.BorderStyle = BorderStyle.Fixed3D;
+            pnlAlarm.Location = new Point(13, 43);
             pnlAlarm.Name = "pnlAlarm";
             pnlAlarm.Size = new Size(230, 180);
             pnlAlarm.TabIndex = 1;
@@ -147,18 +158,18 @@
             lblDistance.AutoSize = true;
             lblDistance.Location = new Point(13, 10);
             lblDistance.Name = "lblDistance";
-            lblDistance.Size = new Size(66, 17);
+            lblDistance.Size = new Size(72, 17);
             lblDistance.TabIndex = 0;
-            lblDistance.Text = "DISTANCE";
+            lblDistance.Text = "RSSI Signal";
             // 
             // lblDistanceTime
             // 
             lblDistanceTime.AutoSize = true;
             lblDistanceTime.Location = new Point(13, 27);
             lblDistanceTime.Name = "lblDistanceTime";
-            lblDistanceTime.Size = new Size(89, 17);
+            lblDistanceTime.Size = new Size(91, 17);
             lblDistanceTime.TabIndex = 1;
-            lblDistanceTime.Text = "Distance Time";
+            lblDistanceTime.Text = "Last updated: ";
             // 
             // distanceChart
             // 
@@ -245,13 +256,14 @@
             cmbBaudRate.Name = "cmbBaudRate";
             cmbBaudRate.Size = new Size(121, 25);
             cmbBaudRate.TabIndex = 3;
+            cmbBaudRate.SelectedIndexChanged += cmbBaudRate_SelectedIndexChanged;
             // 
             // statusStrip1
             // 
             statusStrip1.Items.AddRange(new ToolStripItem[] { lblStatus });
             statusStrip1.Location = new Point(0, 513);
             statusStrip1.Name = "statusStrip1";
-            statusStrip1.Size = new Size(1088, 22);
+            statusStrip1.Size = new Size(1092, 22);
             statusStrip1.TabIndex = 13;
             statusStrip1.Text = "statusStrip1";
             statusStrip1.ItemClicked += statusStrip1_ItemClicked;
@@ -271,11 +283,56 @@
             lstMessages.Size = new Size(1050, 191);
             lstMessages.TabIndex = 14;
             // 
+            // btnOptions
+            // 
+            btnOptions.Cursor = Cursors.Hand;
+            btnOptions.Location = new Point(984, 22);
+            btnOptions.Name = "btnOptions";
+            btnOptions.Size = new Size(75, 23);
+            btnOptions.TabIndex = 15;
+            btnOptions.Text = "Options";
+            btnOptions.UseVisualStyleBackColor = true;
+            btnOptions.Click += btnOptions_Click;
+            // 
+            // btnSos
+            // 
+            btnSos.Location = new Point(711, 22);
+            btnSos.Name = "btnSos";
+            btnSos.Size = new Size(36, 23);
+            btnSos.TabIndex = 16;
+            btnSos.Text = "S";
+            btnSos.UseVisualStyleBackColor = true;
+            btnSos.Click += btnSos_Click;
+            // 
+            // btnStatus
+            // 
+            btnStatus.Location = new Point(753, 22);
+            btnStatus.Name = "btnStatus";
+            btnStatus.Size = new Size(36, 23);
+            btnStatus.TabIndex = 17;
+            btnStatus.Text = "A";
+            btnStatus.UseVisualStyleBackColor = true;
+            btnStatus.Click += btnStatus_Click;
+            // 
+            // btnPing
+            // 
+            btnPing.Location = new Point(795, 22);
+            btnPing.Name = "btnPing";
+            btnPing.Size = new Size(36, 23);
+            btnPing.TabIndex = 18;
+            btnPing.Text = "P";
+            btnPing.UseVisualStyleBackColor = true;
+            btnPing.Click += btnPing_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1088, 535);
+            ClientSize = new Size(1092, 535);
+            Controls.Add(btnPing);
+            Controls.Add(btnStatus);
+            Controls.Add(btnSos);
+            Controls.Add(btnOptions);
             Controls.Add(lstMessages);
             Controls.Add(statusStrip1);
             Controls.Add(cmbBaudRate);
@@ -323,5 +380,9 @@
         private ToolStripStatusLabel lblStatus;
         private ListBox lstMessages;
         private LiveChartsCore.SkiaSharpView.WinForms.CartesianChart distanceChart;
+        private Button btnOptions;
+        private Button btnSos;
+        private Button btnStatus;
+        private Button btnPing;
     }
 }
