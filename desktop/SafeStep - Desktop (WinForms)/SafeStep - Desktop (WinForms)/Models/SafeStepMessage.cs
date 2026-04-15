@@ -64,5 +64,11 @@
         /// Used to show "Last updated: HH:mm:ss" in the UI.
         /// </summary>
         public DateTime Timestamp { get; set; }
+
+        /// <summary>
+        /// Temperature of the wristband tag in degrees Celsius.
+        /// Provided by the dongle as an optional field for monitoring patient conditions.
+        /// </summary>
+        public float Temperature { get; set; }
     }
 }
