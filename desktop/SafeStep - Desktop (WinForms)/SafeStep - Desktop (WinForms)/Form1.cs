@@ -1,10 +1,11 @@
-using SafeStepDesktop.Models;
-using SafeStepDesktop.Services;
-using System.IO.Ports;
-using System.Media;
 using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView;
+using SafeStepDesktop.Models;
+using SafeStepDesktop.Services;
 using System.Globalization;
+using System.IO.Ports;
+using System.Media;
+using static System.ComponentModel.Design.ObjectSelectorEditor;
 
 namespace SafeStep___Desktop__WinForms_
 {
@@ -45,6 +46,28 @@ namespace SafeStep___Desktop__WinForms_
         /// </summary>
         private string _serialBuffer = "";
 
+        /// <summary>
+        /// Local SQLite logger used to persist warning events.
+        /// </summary>
+        private readonly WarningLogService _warningLogService = new();
+
+        /// <summary>
+        /// Firebase service used to push local tag data to the cloud (Local mode)
+        /// or poll remote tag data (Cloud mode).
+        /// </summary>
+        private readonly FirebaseService _firebaseService = new();
+
+        /// <summary>
+        /// Timer that polls Firebase every 3 seconds when in Cloud mode.
+        /// </summary>
+        private System.Windows.Forms.Timer? _cloudPollTimer;
+
+        /// <summary>
+        /// Planned max warning zones for future expansion.
+        /// Current firmware/UI actively uses zones 1-3.
+        /// </summary>
+        private const int MaxSupportedZones = 6;
+
         public Form1()
         {
             InitializeComponent();
@@ -58,12 +81,32 @@ namespace SafeStep___Desktop__WinForms_
         /// </summary>
         private void Form1_Load(object sender, EventArgs e)
         {
-            // Populate baud rate dropdown and pre-select 115200 (dongle default)
+            try
+            {
+                _warningLogService.Initialize();
+            }
+            catch (Exception ex)
+            {
+                lstMessages.Items.Insert(0, "DB INIT ERROR: " + ex.Message);
+            }
+
+            ApplyConnectionMode();
+
+            // Populate baud rate dropdown and pre-select saved rate
             cmbBaudRate.Items.Clear();
             cmbBaudRate.Items.AddRange(_baudRates.Cast<object>().ToArray());
-            cmbBaudRate.SelectedItem = 115200;
+            int savedBaudRate = Properties.Settings.Default.LastBaudRate;
+            cmbBaudRate.SelectedItem = _baudRates.Contains(savedBaudRate) ? savedBaudRate : 115200;
 
             RefreshPorts();
+
+
+            // Try to select the saved port, fall back to first available
+            string savedPort = Properties.Settings.Default.LastPort;
+            if (cmbPorts.Items.Contains(savedPort))
+                cmbPorts.SelectedItem = savedPort;
+            else if (cmbPorts.Items.Count > 0)
+                cmbPorts.SelectedIndex = 0;
 
             // Set UI to disconnected state
             lblStatus.Text = "Disconnected";
@@ -76,16 +119,25 @@ namespace SafeStep___Desktop__WinForms_
             lblDistanceTime.Text = "Last updated: --:--";
             lblBattery.Text = "0%";
             progressBattery.Value = 0;
+            lblTemperature.Text = "--°C";
 
             // Initialize the live chart with an empty dataset
             distanceChart.Series = new ISeries[]
             {
-                new LineSeries<double>
-                {
-                    Values = _distanceValues,
-                    Fill = null
-                }
+        new LineSeries<double>
+        {
+            Values = _distanceValues,
+            Fill = null
+        }
             };
+
+            // AUTO-CONNECT if enabled in settings
+            if (Properties.Settings.Default.AutoConnect &&
+                cmbPorts.SelectedItem != null &&
+                cmbBaudRate.SelectedItem != null)
+            {
+                btnConnect_Click(null, null);
+            }
         }
 
         /// <summary>
@@ -110,6 +162,14 @@ namespace SafeStep___Desktop__WinForms_
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             RefreshPorts();
+
+            // Re-select the saved port if it's still available after refresh
+            //Example how it works:
+            //Dongle was unplugged → Refresh → COM3 gone → falls back to first available
+            //Dongle was plugged back in → Refresh → COM3 back → auto - selects COM3 again
+            string savedPort = Properties.Settings.Default.LastPort;
+            if (!string.IsNullOrEmpty(savedPort) && cmbPorts.Items.Contains(savedPort))
+                cmbPorts.SelectedItem = savedPort;
         }
 
         /// <summary>
@@ -146,7 +206,14 @@ namespace SafeStep___Desktop__WinForms_
                 lblStatus.Text = $"Connected to {_serialPort.PortName} @ {_serialPort.BaudRate} baud";
                 btnConnect.Enabled = false;
                 btnDisconnect.Enabled = true;
+
+                // Remember the last used port and baud rate
+                Properties.Settings.Default.LastPort = _serialPort.PortName;
+                Properties.Settings.Default.LastBaudRate = _serialPort.BaudRate;
+                Properties.Settings.Default.Save();
             }
+
+
             catch (Exception ex)
             {
                 MessageBox.Show("Connection failed: " + ex.Message);
@@ -237,28 +304,45 @@ namespace SafeStep___Desktop__WinForms_
         ///   - Battery level → progress bar + label
         ///   - Zone warnings → alarm panel color + sound
         ///   - RSSI → distance chart
+        ///   - Temperature → label update
         ///   - IsAlive = false → "Tag Lost" warning
         ///
         /// If parsing fails (null returned), logs a failure message to the list.
         /// </summary>
-        private void ProcessIncomingData(string rawData)
+        private async void ProcessIncomingData(string rawData)
         {
             var msg = MessageParser.Parse(rawData);
 
             // If the parser couldn't make sense of the line, log it and stop
             if (msg == null)
             {
+                if (!rawData.StartsWith("ID=", StringComparison.OrdinalIgnoreCase))
+                    return;
+
                 lstMessages.Items.Insert(0, "PARSE FAILED FOR: " + rawData);
                 return;
             }
 
             // Log the parsed message summary to the message list
             lstMessages.Items.Insert(0,
-                $"{msg.Timestamp:HH:mm:ss} | {msg.TagName} ({msg.TagId}) | BAT:{msg.Battery}% | " +
-                $"Z1:{(msg.Zone1 ? "⚠" : "OK")} Z2:{(msg.Zone2 ? "⚠" : "OK")} Z3:{(msg.Zone3 ? "🚨" : "OK")}");
+            $"{msg.Timestamp:HH:mm:ss} | {msg.TagName} ({msg.TagId}) | BAT:{msg.Battery}% | TEMP:{msg.Temperature:F1}°C | " +
+            $"Z1:{(msg.Zone1 ? "⚠" : "OK")} Z2:{(msg.Zone2 ? "⚠" : "OK")} Z3:{(msg.Zone3 ? "🚨" : "OK")}");
 
             // Update battery display
             UpdateBatteryLevel(msg.Battery);
+
+            // Push to Firebase if in Local mode so remote viewers can see the data
+            if (Properties.Settings.Default.ConnectionMode == "Local")
+            {
+                var firebaseError = await _firebaseService.PushTagDataAsync(msg);
+                if (firebaseError != null)
+                    lstMessages.Items.Insert(0, "FIREBASE: " + firebaseError);
+                else
+                    lstMessages.Items.Insert(0, "FIREBASE: pushed OK");
+            }
+
+            // Update temperature display
+            lblTemperature.Text = msg.Temperature.ToString("F1") + "°C";
 
             // Update RSSI/distance chart if RSSI data is present
             if (!string.IsNullOrEmpty(msg.Rssi) &&
@@ -270,6 +354,7 @@ namespace SafeStep___Desktop__WinForms_
             // Handle tag lost (PING=0)
             if (!msg.IsAlive)
             {
+                LogWarningToDatabase(msg, "TAG_LOST", 0, "TAG LOST");
                 TriggerZoneWarning("TAG LOST", Color.Gray);
                 return;
             }
@@ -277,18 +362,26 @@ namespace SafeStep___Desktop__WinForms_
             // Zone 3 is most critical — check it first (red alarm + sound)
             if (msg.Zone3)
             {
+                LogWarningToDatabase(msg, "ZONE_WARNING", 3, "ZONE 3 — CRITICAL (>10m)");
                 TriggerZoneWarning("ZONE 3 — CRITICAL (>10m)", Color.Red);
             }
             // Zone 2 is medium severity (orange + beep)
             else if (msg.Zone2)
             {
+                LogWarningToDatabase(msg, "ZONE_WARNING", 2, "ZONE 2 — WARNING (5–10m)");
                 TriggerZoneWarning("ZONE 2 — WARNING (5–10m)", Color.Orange);
             }
             // Zone 1 is a mild warning (yellow)
             else if (msg.Zone1)
             {
+                LogWarningToDatabase(msg, "ZONE_WARNING", 1, "ZONE 1 — CAUTION (3–5m)");
                 TriggerZoneWarning("ZONE 1 — CAUTION (3–5m)", Color.Yellow);
             }
+            // Planned expansion (MaxSupportedZones = 6):
+            // Future firmware fields can enable additional branches here.
+            // else if (msg.Zone4) { ... }
+            // else if (msg.Zone5) { ... }
+            // else if (msg.Zone6) { ... }
             // All zones clear — reset alarm panel to green
             else
             {
@@ -390,6 +483,21 @@ namespace SafeStep___Desktop__WinForms_
             lblBattery.Text = percent + "%";
         }
 
+        private void LogWarningToDatabase(SafeStepMessage msg, string warningCode, int zoneLevel, string warningText)
+        {
+            try
+            {
+                if (zoneLevel < 0 || zoneLevel > MaxSupportedZones)
+                    return;
+
+                _warningLogService.LogWarning(msg, warningCode, zoneLevel, warningText);
+            }
+            catch (Exception ex)
+            {
+                lstMessages.Items.Insert(0, "DB LOG ERROR: " + ex.Message);
+            }
+        }
+
         /// <summary>
         /// Sends a command string to the dongle over the serial port.
         /// Command format: $CMD,COMMANDNAME (e.g. $CMD,PING)
@@ -409,7 +517,7 @@ namespace SafeStep___Desktop__WinForms_
                 MessageBox.Show("Not connected. Please connect to the dongle first.");
                 return;
             }
-            
+
             try
             {
                 string message = $"$CMD,{cmd}";
@@ -470,9 +578,106 @@ namespace SafeStep___Desktop__WinForms_
             {
                 optionsForm.ShowDialog(this);
             }
+
+            // Re-apply connection mode after user may have changed settings
+            ApplyConnectionMode();
+        }
+
+        /// <summary>
+        /// Reads the saved ConnectionMode setting and configures the app accordingly.
+        /// Local mode: configures Firebase for push only, disables poll timer.
+        /// Cloud mode: disables serial UI controls, starts polling Firebase every 3 seconds.
+        /// </summary>
+        private void ApplyConnectionMode()
+        {
+            _firebaseService.Configure(
+                Properties.Settings.Default.FirebaseUrl,
+                Properties.Settings.Default.FirebaseApiKey);
+
+            // Stop any existing poll timer
+            _cloudPollTimer?.Stop();
+            _cloudPollTimer?.Dispose();
+            _cloudPollTimer = null;
+
+            bool isCloud = Properties.Settings.Default.ConnectionMode == "Cloud";
+
+            // Toggle serial controls — disabled in Cloud mode
+            cmbPorts.Enabled = !isCloud;
+            cmbBaudRate.Enabled = !isCloud;
+            btnConnect.Enabled = !isCloud;
+            btnDisconnect.Enabled = !isCloud;
+            btnRefresh.Enabled = !isCloud;
+
+            if (isCloud)
+            {
+                lblStatus.Text = "Cloud mode — polling Firebase";
+
+                // Disconnect serial if connected
+                try
+                {
+                    if (_serialPort?.IsOpen == true)
+                    {
+                        _serialPort.Close();
+                        _serialPort.Dispose();
+                    }
+                }
+                catch { }
+
+                // Start polling Firebase every 3 seconds
+                _cloudPollTimer = new System.Windows.Forms.Timer { Interval = 3000 };
+                _cloudPollTimer.Tick += async (s, e) => await PollFirebaseAsync();
+                _cloudPollTimer.Start();
+            }
+            else
+            {
+                lblStatus.Text = "Local mode — connect dongle via COM port";
+            }
+        }
+
+        /// <summary>
+        /// Polls Firebase for the latest tag data and processes each message through
+        /// the same UI update pipeline as local serial data.
+        /// </summary>
+        private async Task PollFirebaseAsync()
+        {
+            var messages = await _firebaseService.PollTagDataAsync();
+            foreach (var msg in messages)
+            {
+                lstMessages.Items.Insert(0,
+                    $"[CLOUD] {msg.Timestamp:HH:mm:ss} | {msg.TagName} ({msg.TagId}) | " +
+                    $"BAT:{msg.Battery}% | TEMP:{msg.Temperature:F1}°C | " +
+                    $"Z1:{(msg.Zone1 ? "⚠" : "OK")} Z2:{(msg.Zone2 ? "⚠" : "OK")} Z3:{(msg.Zone3 ? "🚨" : "OK")}");
+
+                UpdateBatteryLevel(msg.Battery);
+                lblTemperature.Text = msg.Temperature.ToString("F1") + "°C";
+
+                if (!string.IsNullOrEmpty(msg.Rssi) &&
+                    double.TryParse(msg.Rssi, System.Globalization.NumberStyles.Any,
+                        System.Globalization.CultureInfo.InvariantCulture, out double rssi))
+                    UpdateDistanceDisplay(rssi);
+
+                if (!msg.IsAlive)
+                    TriggerZoneWarning("TAG LOST", Color.Gray);
+                else if (msg.Zone3)
+                    TriggerZoneWarning("ZONE 3 — CRITICAL (>10m)", Color.Red);
+                else if (msg.Zone2)
+                    TriggerZoneWarning("ZONE 2 — WARNING (5–10m)", Color.Orange);
+                else if (msg.Zone1)
+                    TriggerZoneWarning("ZONE 1 — CAUTION (3–5m)", Color.Yellow);
+                else
+                {
+                    pnlAlarm.BackColor = Color.LightGreen;
+                    lblAlarm.Text = $"All clear — {msg.TagName} in safe range";
+                }
+            }
         }
 
         private void statusStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e) { }
         private void cmbBaudRate_SelectedIndexChanged(object sender, EventArgs e) { }
+
+        private void lblTemperature_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

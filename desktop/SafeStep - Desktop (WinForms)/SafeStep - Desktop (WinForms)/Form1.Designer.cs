@@ -29,11 +29,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            LiveChartsCore.SkiaSharpView.SKCharts.SKDefaultLegend skDefaultLegend1 = new LiveChartsCore.SkiaSharpView.SKCharts.SKDefaultLegend();
+            LiveChartsCore.SkiaSharpView.SKCharts.SKDefaultLegend skDefaultLegend2 = new LiveChartsCore.SkiaSharpView.SKCharts.SKDefaultLegend();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            LiveChartsCore.Drawing.Padding padding1 = new LiveChartsCore.Drawing.Padding();
-            LiveChartsCore.SkiaSharpView.SKCharts.SKDefaultTooltip skDefaultTooltip1 = new LiveChartsCore.SkiaSharpView.SKCharts.SKDefaultTooltip();
-            LiveChartsCore.Drawing.Padding padding2 = new LiveChartsCore.Drawing.Padding();
+            LiveChartsCore.Drawing.Padding padding3 = new LiveChartsCore.Drawing.Padding();
+            LiveChartsCore.SkiaSharpView.SKCharts.SKDefaultTooltip skDefaultTooltip2 = new LiveChartsCore.SkiaSharpView.SKCharts.SKDefaultTooltip();
+            LiveChartsCore.Drawing.Padding padding4 = new LiveChartsCore.Drawing.Padding();
             comPortText = new Label();
             btnRefresh = new Button();
             btnConnect = new Button();
@@ -41,6 +41,7 @@
             flowLayoutPanel1 = new FlowLayoutPanel();
             lblAlarm = new Label();
             pnlAlarm = new Panel();
+            lblTemperature = new Label();
             flowLayoutPanel2 = new FlowLayoutPanel();
             lblDistance = new Label();
             lblDistanceTime = new Label();
@@ -77,7 +78,7 @@
             btnRefresh.Cursor = Cursors.Hand;
             btnRefresh.Location = new Point(220, 18);
             btnRefresh.Name = "btnRefresh";
-            btnRefresh.Size = new Size(75, 27);
+            btnRefresh.Size = new Size(88, 27);
             btnRefresh.TabIndex = 2;
             btnRefresh.Text = "Refresh";
             btnRefresh.UseVisualStyleBackColor = true;
@@ -86,7 +87,7 @@
             // btnConnect
             // 
             btnConnect.Cursor = Cursors.Hand;
-            btnConnect.Location = new Point(445, 18);
+            btnConnect.Location = new Point(459, 20);
             btnConnect.Name = "btnConnect";
             btnConnect.Size = new Size(80, 27);
             btnConnect.TabIndex = 4;
@@ -97,7 +98,7 @@
             // btnDisconnect
             // 
             btnDisconnect.Cursor = Cursors.Hand;
-            btnDisconnect.Location = new Point(535, 18);
+            btnDisconnect.Location = new Point(545, 20);
             btnDisconnect.Name = "btnDisconnect";
             btnDisconnect.Size = new Size(92, 27);
             btnDisconnect.TabIndex = 5;
@@ -110,11 +111,12 @@
             flowLayoutPanel1.BorderStyle = BorderStyle.FixedSingle;
             flowLayoutPanel1.Controls.Add(lblAlarm);
             flowLayoutPanel1.Controls.Add(pnlAlarm);
+            flowLayoutPanel1.Controls.Add(lblTemperature);
             flowLayoutPanel1.FlowDirection = FlowDirection.TopDown;
-            flowLayoutPanel1.Location = new Point(18, 66);
+            flowLayoutPanel1.Location = new Point(18, 77);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
             flowLayoutPanel1.Padding = new Padding(10);
-            flowLayoutPanel1.Size = new Size(270, 240);
+            flowLayoutPanel1.Size = new Size(290, 257);
             flowLayoutPanel1.TabIndex = 6;
             flowLayoutPanel1.WrapContents = false;
             // 
@@ -136,8 +138,19 @@
             pnlAlarm.BorderStyle = BorderStyle.Fixed3D;
             pnlAlarm.Location = new Point(13, 43);
             pnlAlarm.Name = "pnlAlarm";
-            pnlAlarm.Size = new Size(230, 180);
+            pnlAlarm.Size = new Size(243, 160);
             pnlAlarm.TabIndex = 1;
+            // 
+            // lblTemperature
+            // 
+            lblTemperature.AutoSize = true;
+            lblTemperature.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblTemperature.Location = new Point(13, 206);
+            lblTemperature.Name = "lblTemperature";
+            lblTemperature.Size = new Size(52, 25);
+            lblTemperature.TabIndex = 2;
+            lblTemperature.Text = "-- °C";
+            lblTemperature.Click += lblTemperature_Click;
             // 
             // flowLayoutPanel2
             // 
@@ -146,10 +159,10 @@
             flowLayoutPanel2.Controls.Add(lblDistanceTime);
             flowLayoutPanel2.Controls.Add(distanceChart);
             flowLayoutPanel2.FlowDirection = FlowDirection.TopDown;
-            flowLayoutPanel2.Location = new Point(308, 66);
+            flowLayoutPanel2.Location = new Point(332, 77);
             flowLayoutPanel2.Name = "flowLayoutPanel2";
             flowLayoutPanel2.Padding = new Padding(10);
-            flowLayoutPanel2.Size = new Size(520, 240);
+            flowLayoutPanel2.Size = new Size(520, 257);
             flowLayoutPanel2.TabIndex = 7;
             flowLayoutPanel2.WrapContents = false;
             // 
@@ -175,40 +188,40 @@
             // 
             distanceChart.AutoUpdateEnabled = true;
             distanceChart.ChartTheme = null;
-            skDefaultLegend1.AnimationsSpeed = TimeSpan.Parse("00:00:00.1500000");
-            skDefaultLegend1.Content = null;
-            skDefaultLegend1.IsValid = false;
-            skDefaultLegend1.Opacity = 1F;
-            padding1.Bottom = 0F;
-            padding1.Left = 0F;
-            padding1.Right = 0F;
-            padding1.Top = 0F;
-            skDefaultLegend1.Padding = padding1;
-            skDefaultLegend1.RemoveOnCompleted = false;
-            skDefaultLegend1.RotateTransform = 0F;
-            skDefaultLegend1.X = 0F;
-            skDefaultLegend1.Y = 0F;
-            distanceChart.Legend = skDefaultLegend1;
+            skDefaultLegend2.AnimationsSpeed = TimeSpan.Parse("00:00:00.1500000");
+            skDefaultLegend2.Content = null;
+            skDefaultLegend2.IsValid = false;
+            skDefaultLegend2.Opacity = 1F;
+            padding3.Bottom = 0F;
+            padding3.Left = 0F;
+            padding3.Right = 0F;
+            padding3.Top = 0F;
+            skDefaultLegend2.Padding = padding3;
+            skDefaultLegend2.RemoveOnCompleted = false;
+            skDefaultLegend2.RotateTransform = 0F;
+            skDefaultLegend2.X = 0F;
+            skDefaultLegend2.Y = 0F;
+            distanceChart.Legend = skDefaultLegend2;
             distanceChart.Location = new Point(13, 47);
             distanceChart.MatchAxesScreenDataRatio = false;
             distanceChart.Name = "distanceChart";
             distanceChart.Size = new Size(480, 170);
             distanceChart.TabIndex = 2;
-            skDefaultTooltip1.AnimationsSpeed = TimeSpan.Parse("00:00:00.1500000");
-            skDefaultTooltip1.Content = null;
-            skDefaultTooltip1.IsValid = false;
-            skDefaultTooltip1.Opacity = 1F;
-            padding2.Bottom = 0F;
-            padding2.Left = 0F;
-            padding2.Right = 0F;
-            padding2.Top = 0F;
-            skDefaultTooltip1.Padding = padding2;
-            skDefaultTooltip1.RemoveOnCompleted = false;
-            skDefaultTooltip1.RotateTransform = 0F;
-            skDefaultTooltip1.Wedge = 10;
-            skDefaultTooltip1.X = 0F;
-            skDefaultTooltip1.Y = 0F;
-            distanceChart.Tooltip = skDefaultTooltip1;
+            skDefaultTooltip2.AnimationsSpeed = TimeSpan.Parse("00:00:00.1500000");
+            skDefaultTooltip2.Content = null;
+            skDefaultTooltip2.IsValid = false;
+            skDefaultTooltip2.Opacity = 1F;
+            padding4.Bottom = 0F;
+            padding4.Left = 0F;
+            padding4.Right = 0F;
+            padding4.Top = 0F;
+            skDefaultTooltip2.Padding = padding4;
+            skDefaultTooltip2.RemoveOnCompleted = false;
+            skDefaultTooltip2.RotateTransform = 0F;
+            skDefaultTooltip2.Wedge = 10;
+            skDefaultTooltip2.X = 0F;
+            skDefaultTooltip2.Y = 0F;
+            distanceChart.Tooltip = skDefaultTooltip2;
             distanceChart.TooltipFindingStrategy = LiveChartsCore.Measure.TooltipFindingStrategy.Automatic;
             distanceChart.UpdaterThrottler = TimeSpan.Parse("00:00:00.0500000");
             // 
@@ -218,10 +231,10 @@
             flowLayoutPanel3.Controls.Add(lblBattery);
             flowLayoutPanel3.Controls.Add(progressBattery);
             flowLayoutPanel3.FlowDirection = FlowDirection.TopDown;
-            flowLayoutPanel3.Location = new Point(848, 66);
+            flowLayoutPanel3.Location = new Point(881, 77);
             flowLayoutPanel3.Name = "flowLayoutPanel3";
             flowLayoutPanel3.Padding = new Padding(10);
-            flowLayoutPanel3.Size = new Size(220, 240);
+            flowLayoutPanel3.Size = new Size(267, 257);
             flowLayoutPanel3.TabIndex = 8;
             flowLayoutPanel3.WrapContents = false;
             // 
@@ -238,7 +251,7 @@
             // 
             progressBattery.Location = new Point(13, 30);
             progressBattery.Name = "progressBattery";
-            progressBattery.Size = new Size(180, 28);
+            progressBattery.Size = new Size(240, 33);
             progressBattery.TabIndex = 1;
             // 
             // cmbPorts
@@ -252,7 +265,7 @@
             // cmbBaudRate
             // 
             cmbBaudRate.FormattingEnabled = true;
-            cmbBaudRate.Location = new Point(308, 18);
+            cmbBaudRate.Location = new Point(332, 20);
             cmbBaudRate.Name = "cmbBaudRate";
             cmbBaudRate.Size = new Size(121, 25);
             cmbBaudRate.TabIndex = 3;
@@ -261,9 +274,9 @@
             // statusStrip1
             // 
             statusStrip1.Items.AddRange(new ToolStripItem[] { lblStatus });
-            statusStrip1.Location = new Point(0, 513);
+            statusStrip1.Location = new Point(0, 622);
             statusStrip1.Name = "statusStrip1";
-            statusStrip1.Size = new Size(1092, 22);
+            statusStrip1.Size = new Size(1160, 22);
             statusStrip1.TabIndex = 13;
             statusStrip1.Text = "statusStrip1";
             statusStrip1.ItemClicked += statusStrip1_ItemClicked;
@@ -278,17 +291,17 @@
             // 
             lstMessages.BackColor = SystemColors.Info;
             lstMessages.FormattingEnabled = true;
-            lstMessages.Location = new Point(18, 323);
+            lstMessages.Location = new Point(18, 357);
             lstMessages.Name = "lstMessages";
-            lstMessages.Size = new Size(1050, 191);
+            lstMessages.Size = new Size(1130, 242);
             lstMessages.TabIndex = 14;
             // 
             // btnOptions
             // 
             btnOptions.Cursor = Cursors.Hand;
-            btnOptions.Location = new Point(984, 22);
+            btnOptions.Location = new Point(1041, 24);
             btnOptions.Name = "btnOptions";
-            btnOptions.Size = new Size(75, 23);
+            btnOptions.Size = new Size(107, 23);
             btnOptions.TabIndex = 15;
             btnOptions.Text = "Options";
             btnOptions.UseVisualStyleBackColor = true;
@@ -328,7 +341,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1092, 535);
+            ClientSize = new Size(1160, 644);
             Controls.Add(btnPing);
             Controls.Add(btnStatus);
             Controls.Add(btnSos);
@@ -384,5 +397,6 @@
         private Button btnSos;
         private Button btnStatus;
         private Button btnPing;
+        private Label lblTemperature;
     }
 }

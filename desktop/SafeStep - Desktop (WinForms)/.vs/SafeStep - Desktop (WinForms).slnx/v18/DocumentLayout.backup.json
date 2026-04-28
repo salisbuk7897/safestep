@@ -3,28 +3,48 @@
   "WorkspaceRootPath": "C:\\Users\\NIKITA MITEVSKI\\source\\repos\\safestep\\desktop\\SafeStep - Desktop (WinForms)\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C4E75ABD-2D17-6C15-52B8-541D511836BF}|SafeStep - Desktop (WinForms)\\SafeStep - Desktop (WinForms).csproj|c:\\users\\nikita mitevski\\source\\repos\\safestep\\desktop\\safestep - desktop (winforms)\\safestep - desktop (winforms)\\services\\messageparser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C4E75ABD-2D17-6C15-52B8-541D511836BF}|SafeStep - Desktop (WinForms)\\SafeStep - Desktop (WinForms).csproj|solutionrelative:safestep - desktop (winforms)\\services\\messageparser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C4E75ABD-2D17-6C15-52B8-541D511836BF}|SafeStep - Desktop (WinForms)\\SafeStep - Desktop (WinForms).csproj|c:\\users\\nikita mitevski\\source\\repos\\safestep\\desktop\\safestep - desktop (winforms)\\safestep - desktop (winforms)\\options.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{C4E75ABD-2D17-6C15-52B8-541D511836BF}|SafeStep - Desktop (WinForms)\\SafeStep - Desktop (WinForms).csproj|solutionrelative:safestep - desktop (winforms)\\options.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C4E75ABD-2D17-6C15-52B8-541D511836BF}|SafeStep - Desktop (WinForms)\\SafeStep - Desktop (WinForms).csproj|c:\\users\\nikita mitevski\\source\\repos\\safestep\\desktop\\safestep - desktop (winforms)\\safestep - desktop (winforms)\\models\\safestepmessage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C4E75ABD-2D17-6C15-52B8-541D511836BF}|SafeStep - Desktop (WinForms)\\SafeStep - Desktop (WinForms).csproj|solutionrelative:safestep - desktop (winforms)\\models\\safestepmessage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C4E75ABD-2D17-6C15-52B8-541D511836BF}|SafeStep - Desktop (WinForms)\\SafeStep - Desktop (WinForms).csproj|c:\\users\\nikita mitevski\\source\\repos\\safestep\\desktop\\safestep - desktop (winforms)\\safestep - desktop (winforms)\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C4E75ABD-2D17-6C15-52B8-541D511836BF}|SafeStep - Desktop (WinForms)\\SafeStep - Desktop (WinForms).csproj|solutionrelative:safestep - desktop (winforms)\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C4E75ABD-2D17-6C15-52B8-541D511836BF}|SafeStep - Desktop (WinForms)\\SafeStep - Desktop (WinForms).csproj|c:\\users\\nikita mitevski\\source\\repos\\safestep\\desktop\\safestep - desktop (winforms)\\safestep - desktop (winforms)\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C4E75ABD-2D17-6C15-52B8-541D511836BF}|SafeStep - Desktop (WinForms)\\SafeStep - Desktop (WinForms).csproj|solutionrelative:safestep - desktop (winforms)\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C4E75ABD-2D17-6C15-52B8-541D511836BF}|SafeStep - Desktop (WinForms)\\SafeStep - Desktop (WinForms).csproj|c:\\users\\nikita mitevski\\source\\repos\\safestep\\desktop\\safestep - desktop (winforms)\\safestep - desktop (winforms)\\options.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C4E75ABD-2D17-6C15-52B8-541D511836BF}|SafeStep - Desktop (WinForms)\\SafeStep - Desktop (WinForms).csproj|solutionrelative:safestep - desktop (winforms)\\options.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C4E75ABD-2D17-6C15-52B8-541D511836BF}|SafeStep - Desktop (WinForms)\\SafeStep - Desktop (WinForms).csproj|c:\\users\\nikita mitevski\\source\\repos\\safestep\\desktop\\safestep - desktop (winforms)\\safestep - desktop (winforms)\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C4E75ABD-2D17-6C15-52B8-541D511836BF}|SafeStep - Desktop (WinForms)\\SafeStep - Desktop (WinForms).csproj|solutionrelative:safestep - desktop (winforms)\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{C4E75ABD-2D17-6C15-52B8-541D511836BF}|SafeStep - Desktop (WinForms)\\SafeStep - Desktop (WinForms).csproj|c:\\users\\nikita mitevski\\source\\repos\\safestep\\desktop\\safestep - desktop (winforms)\\safestep - desktop (winforms)\\options.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C4E75ABD-2D17-6C15-52B8-541D511836BF}|SafeStep - Desktop (WinForms)\\SafeStep - Desktop (WinForms).csproj|solutionrelative:safestep - desktop (winforms)\\options.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C4E75ABD-2D17-6C15-52B8-541D511836BF}|SafeStep - Desktop (WinForms)\\SafeStep - Desktop (WinForms).csproj|c:\\users\\nikita mitevski\\source\\repos\\safestep\\desktop\\safestep - desktop (winforms)\\safestep - desktop (winforms)\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C4E75ABD-2D17-6C15-52B8-541D511836BF}|SafeStep - Desktop (WinForms)\\SafeStep - Desktop (WinForms).csproj|solutionrelative:safestep - desktop (winforms)\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{C4E75ABD-2D17-6C15-52B8-541D511836BF}|SafeStep - Desktop (WinForms)\\SafeStep - Desktop (WinForms).csproj|C:\\Users\\NIKITA MITEVSKI\\source\\repos\\safestep\\desktop\\SafeStep - Desktop (WinForms)\\safestep - desktop (winforms)\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{C4E75ABD-2D17-6C15-52B8-541D511836BF}|SafeStep - Desktop (WinForms)\\SafeStep - Desktop (WinForms).csproj|solutionrelative:safestep - desktop (winforms)\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C4E75ABD-2D17-6C15-52B8-541D511836BF}|SafeStep - Desktop (WinForms)\\SafeStep - Desktop (WinForms).csproj|c:\\users\\nikita mitevski\\source\\repos\\safestep\\desktop\\safestep - desktop (winforms)\\safestep - desktop (winforms)\\safestep - desktop (winforms).csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{C4E75ABD-2D17-6C15-52B8-541D511836BF}|SafeStep - Desktop (WinForms)\\SafeStep - Desktop (WinForms).csproj|solutionrelative:safestep - desktop (winforms)\\safestep - desktop (winforms).csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\NIKITA MITEVSKI\\source\\repos\\safestep\\desktop\\SafeStep - Desktop (WinForms)\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C4E75ABD-2D17-6C15-52B8-541D511836BF}|SafeStep - Desktop (WinForms)\\SafeStep - Desktop (WinForms).csproj|c:\\users\\nikita mitevski\\source\\repos\\safestep\\desktop\\safestep - desktop (winforms)\\safestep - desktop (winforms)\\properties\\settings.settings||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{C4E75ABD-2D17-6C15-52B8-541D511836BF}|SafeStep - Desktop (WinForms)\\SafeStep - Desktop (WinForms).csproj|solutionrelative:safestep - desktop (winforms)\\properties\\settings.settings||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C4E75ABD-2D17-6C15-52B8-541D511836BF}|SafeStep - Desktop (WinForms)\\SafeStep - Desktop (WinForms).csproj|c:\\users\\nikita mitevski\\source\\repos\\safestep\\desktop\\safestep - desktop (winforms)\\safestep - desktop (winforms)\\services\\firebaseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C4E75ABD-2D17-6C15-52B8-541D511836BF}|SafeStep - Desktop (WinForms)\\SafeStep - Desktop (WinForms).csproj|solutionrelative:safestep - desktop (winforms)\\services\\firebaseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C4E75ABD-2D17-6C15-52B8-541D511836BF}|SafeStep - Desktop (WinForms)\\SafeStep - Desktop (WinForms).csproj|c:\\users\\nikita mitevski\\source\\repos\\safestep\\desktop\\safestep - desktop (winforms)\\safestep - desktop (winforms)\\properties\\settings.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C4E75ABD-2D17-6C15-52B8-541D511836BF}|SafeStep - Desktop (WinForms)\\SafeStep - Desktop (WinForms).csproj|solutionrelative:safestep - desktop (winforms)\\properties\\settings.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,45 +54,108 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "SafeStepMessage.cs",
-              "DocumentMoniker": "C:\\Users\\NIKITA MITEVSKI\\source\\repos\\safestep\\desktop\\SafeStep - Desktop (WinForms)\\SafeStep - Desktop (WinForms)\\Models\\SafeStepMessage.cs",
-              "RelativeDocumentMoniker": "SafeStep - Desktop (WinForms)\\Models\\SafeStepMessage.cs",
-              "ToolTip": "C:\\Users\\NIKITA MITEVSKI\\source\\repos\\safestep\\desktop\\SafeStep - Desktop (WinForms)\\SafeStep - Desktop (WinForms)\\Models\\SafeStepMessage.cs",
-              "RelativeToolTip": "SafeStep - Desktop (WinForms)\\Models\\SafeStepMessage.cs",
-              "ViewState": "AgIAACkAAAAAAAAAAAAmwEcAAAAuAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "Options.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\NIKITA MITEVSKI\\source\\repos\\safestep\\desktop\\SafeStep - Desktop (WinForms)\\SafeStep - Desktop (WinForms)\\Options.cs",
+              "RelativeDocumentMoniker": "SafeStep - Desktop (WinForms)\\Options.cs",
+              "ToolTip": "C:\\Users\\NIKITA MITEVSKI\\source\\repos\\safestep\\desktop\\SafeStep - Desktop (WinForms)\\SafeStep - Desktop (WinForms)\\Options.cs [Design]",
+              "RelativeToolTip": "SafeStep - Desktop (WinForms)\\Options.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-15T18:47:15.58Z",
+              "WhenOpened": "2026-04-26T12:51:31.828Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Settings.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\NIKITA MITEVSKI\\source\\repos\\safestep\\desktop\\SafeStep - Desktop (WinForms)\\SafeStep - Desktop (WinForms)\\Properties\\Settings.Designer.cs",
+              "RelativeDocumentMoniker": "SafeStep - Desktop (WinForms)\\Properties\\Settings.Designer.cs",
+              "ToolTip": "C:\\Users\\NIKITA MITEVSKI\\source\\repos\\safestep\\desktop\\SafeStep - Desktop (WinForms)\\SafeStep - Desktop (WinForms)\\Properties\\Settings.Designer.cs",
+              "RelativeToolTip": "SafeStep - Desktop (WinForms)\\Properties\\Settings.Designer.cs",
+              "ViewState": "AgIAAGoAAAAAAAAAAIBJwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-26T12:48:57.898Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "MessageParser.cs",
-              "DocumentMoniker": "C:\\Users\\NIKITA MITEVSKI\\source\\repos\\safestep\\desktop\\SafeStep - Desktop (WinForms)\\SafeStep - Desktop (WinForms)\\Services\\MessageParser.cs",
-              "RelativeDocumentMoniker": "SafeStep - Desktop (WinForms)\\Services\\MessageParser.cs",
-              "ToolTip": "C:\\Users\\NIKITA MITEVSKI\\source\\repos\\safestep\\desktop\\SafeStep - Desktop (WinForms)\\SafeStep - Desktop (WinForms)\\Services\\MessageParser.cs",
-              "RelativeToolTip": "SafeStep - Desktop (WinForms)\\Services\\MessageParser.cs",
-              "ViewState": "AgIAAD0AAAAAAAAAAAAcwFsAAABXAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "Options.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\NIKITA MITEVSKI\\source\\repos\\safestep\\desktop\\SafeStep - Desktop (WinForms)\\SafeStep - Desktop (WinForms)\\Options.Designer.cs",
+              "RelativeDocumentMoniker": "SafeStep - Desktop (WinForms)\\Options.Designer.cs",
+              "ToolTip": "C:\\Users\\NIKITA MITEVSKI\\source\\repos\\safestep\\desktop\\SafeStep - Desktop (WinForms)\\SafeStep - Desktop (WinForms)\\Options.Designer.cs",
+              "RelativeToolTip": "SafeStep - Desktop (WinForms)\\Options.Designer.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-15T18:45:04.997Z",
+              "WhenOpened": "2026-04-26T12:47:05.57Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "FirebaseService.cs",
+              "DocumentMoniker": "C:\\Users\\NIKITA MITEVSKI\\source\\repos\\safestep\\desktop\\SafeStep - Desktop (WinForms)\\SafeStep - Desktop (WinForms)\\Services\\FirebaseService.cs",
+              "RelativeDocumentMoniker": "SafeStep - Desktop (WinForms)\\Services\\FirebaseService.cs",
+              "ToolTip": "C:\\Users\\NIKITA MITEVSKI\\source\\repos\\safestep\\desktop\\SafeStep - Desktop (WinForms)\\SafeStep - Desktop (WinForms)\\Services\\FirebaseService.cs",
+              "RelativeToolTip": "SafeStep - Desktop (WinForms)\\Services\\FirebaseService.cs",
+              "ViewState": "AgIAAC0AAAAAAAAAAABQwJAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-26T12:46:42.059Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Settings.settings",
+              "DocumentMoniker": "C:\\Users\\NIKITA MITEVSKI\\source\\repos\\safestep\\desktop\\SafeStep - Desktop (WinForms)\\SafeStep - Desktop (WinForms)\\Properties\\Settings.settings",
+              "RelativeDocumentMoniker": "SafeStep - Desktop (WinForms)\\Properties\\Settings.settings",
+              "ToolTip": "C:\\Users\\NIKITA MITEVSKI\\source\\repos\\safestep\\desktop\\SafeStep - Desktop (WinForms)\\SafeStep - Desktop (WinForms)\\Properties\\Settings.settings",
+              "RelativeToolTip": "SafeStep - Desktop (WinForms)\\Properties\\Settings.settings",
+              "ViewState": "AgIAABgAAAAAAAAAAABBwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002767|",
+              "WhenOpened": "2026-04-26T12:46:14.239Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "SafeStep - Desktop (WinForms).csproj",
+              "DocumentMoniker": "C:\\Users\\NIKITA MITEVSKI\\source\\repos\\safestep\\desktop\\SafeStep - Desktop (WinForms)\\SafeStep - Desktop (WinForms)\\SafeStep - Desktop (WinForms).csproj",
+              "RelativeDocumentMoniker": "SafeStep - Desktop (WinForms)\\SafeStep - Desktop (WinForms).csproj",
+              "ToolTip": "C:\\Users\\NIKITA MITEVSKI\\source\\repos\\safestep\\desktop\\SafeStep - Desktop (WinForms)\\SafeStep - Desktop (WinForms)\\SafeStep - Desktop (WinForms).csproj",
+              "RelativeToolTip": "SafeStep - Desktop (WinForms)\\SafeStep - Desktop (WinForms).csproj",
+              "ViewState": "AgIAABwAAAAAAAAAAABBwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-04-20T13:57:29.658Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\NIKITA MITEVSKI\\source\\repos\\safestep\\desktop\\SafeStep - Desktop (WinForms)\\SafeStep - Desktop (WinForms)\\Program.cs",
-              "RelativeDocumentMoniker": "SafeStep - Desktop (WinForms)\\Program.cs",
-              "ToolTip": "C:\\Users\\NIKITA MITEVSKI\\source\\repos\\safestep\\desktop\\SafeStep - Desktop (WinForms)\\SafeStep - Desktop (WinForms)\\Program.cs",
-              "RelativeToolTip": "SafeStep - Desktop (WinForms)\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Title": "Form1.cs",
+              "DocumentMoniker": "C:\\Users\\NIKITA MITEVSKI\\source\\repos\\safestep\\desktop\\SafeStep - Desktop (WinForms)\\SafeStep - Desktop (WinForms)\\Form1.cs",
+              "RelativeDocumentMoniker": "SafeStep - Desktop (WinForms)\\Form1.cs",
+              "ToolTip": "C:\\Users\\NIKITA MITEVSKI\\source\\repos\\safestep\\desktop\\SafeStep - Desktop (WinForms)\\SafeStep - Desktop (WinForms)\\Form1.cs",
+              "RelativeToolTip": "SafeStep - Desktop (WinForms)\\Form1.cs",
+              "ViewState": "AgIAAB4BAAAAAAAAAAAMwBAAAAA/AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-13T14:14:18.294Z",
+              "WhenOpened": "2026-04-05T14:00:54.95Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Options.cs",
+              "DocumentMoniker": "C:\\Users\\NIKITA MITEVSKI\\source\\repos\\safestep\\desktop\\SafeStep - Desktop (WinForms)\\SafeStep - Desktop (WinForms)\\Options.cs",
+              "RelativeDocumentMoniker": "SafeStep - Desktop (WinForms)\\Options.cs",
+              "ToolTip": "C:\\Users\\NIKITA MITEVSKI\\source\\repos\\safestep\\desktop\\SafeStep - Desktop (WinForms)\\SafeStep - Desktop (WinForms)\\Options.cs",
+              "RelativeToolTip": "SafeStep - Desktop (WinForms)\\Options.cs",
+              "ViewState": "AgIAAF8AAAAAAAAAAIAwwEUAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-18T16:05:06.502Z",
               "EditorCaption": ""
             },
             {
@@ -88,27 +171,27 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "Form1.Designer.cs",
               "DocumentMoniker": "C:\\Users\\NIKITA MITEVSKI\\source\\repos\\safestep\\desktop\\SafeStep - Desktop (WinForms)\\SafeStep - Desktop (WinForms)\\Form1.Designer.cs",
               "RelativeDocumentMoniker": "SafeStep - Desktop (WinForms)\\Form1.Designer.cs",
               "ToolTip": "C:\\Users\\NIKITA MITEVSKI\\source\\repos\\safestep\\desktop\\SafeStep - Desktop (WinForms)\\SafeStep - Desktop (WinForms)\\Form1.Designer.cs",
               "RelativeToolTip": "SafeStep - Desktop (WinForms)\\Form1.Designer.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAHABAAAxAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-05T14:07:30.013Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Form1.cs",
-              "DocumentMoniker": "C:\\Users\\NIKITA MITEVSKI\\source\\repos\\safestep\\desktop\\SafeStep - Desktop (WinForms)\\SafeStep - Desktop (WinForms)\\Form1.cs",
-              "RelativeDocumentMoniker": "SafeStep - Desktop (WinForms)\\Form1.cs",
-              "ToolTip": "C:\\Users\\NIKITA MITEVSKI\\source\\repos\\safestep\\desktop\\SafeStep - Desktop (WinForms)\\SafeStep - Desktop (WinForms)\\Form1.cs",
-              "RelativeToolTip": "SafeStep - Desktop (WinForms)\\Form1.cs",
-              "ViewState": "AgIAAHsBAAAAAAAAAAAMwJQBAAAgAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-05T14:00:54.95Z"
+              "DocumentIndex": 7,
+              "Title": ".gitignore",
+              "DocumentMoniker": "C:\\Users\\NIKITA MITEVSKI\\source\\repos\\safestep\\desktop\\SafeStep - Desktop (WinForms)\\.gitignore",
+              "RelativeDocumentMoniker": ".gitignore",
+              "ToolTip": "C:\\Users\\NIKITA MITEVSKI\\source\\repos\\safestep\\desktop\\SafeStep - Desktop (WinForms)\\.gitignore",
+              "RelativeToolTip": ".gitignore",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-04-20T15:12:52.441Z"
             }
           ]
         }

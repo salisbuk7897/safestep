@@ -1,0 +1,408 @@
+﻿namespace SafeStep___Desktop__WinForms_
+{
+    partial class Options
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            lblPortsTitle = new Label();
+            cmbPort1 = new ComboBox();
+            lblPort1 = new Label();
+            lblPort2 = new Label();
+            cmbPort2 = new ComboBox();
+            cmbPort3 = new ComboBox();
+            lblPort3 = new Label();
+            cmbPort4 = new ComboBox();
+            lblPort4 = new Label();
+            lblBaudRate = new Label();
+            cmbOptionsBaudRate = new ComboBox();
+            lblDetectedDevicesTitle = new Label();
+            lblTagId = new Label();
+            txtTagId = new TextBox();
+            lblFriendlyName = new Label();
+            txtFriendlyName = new TextBox();
+            btnSaveMapping = new Button();
+            lblSettingsTitle = new Label();
+            chkAutoConnect = new CheckBox();
+            lblDeviceFilter = new Label();
+            txtDeviceFilter = new TextBox();
+            btnSaveOptions = new Button();
+            btnCloseOptions = new Button();
+            lstDevices = new ListBox();
+            label1 = new Label();
+            txtDetectedDeviceName = new TextBox();
+            lblDetectedDeviceName = new Label();
+            btnPairDevice = new Button();
+            btnRefreshDevices = new Button();
+            label3 = new Label();
+            SuspendLayout();
+            // 
+            // lblPortsTitle
+            // 
+            lblPortsTitle.AutoSize = true;
+            lblPortsTitle.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblPortsTitle.Location = new Point(22, 9);
+            lblPortsTitle.Name = "lblPortsTitle";
+            lblPortsTitle.Size = new Size(66, 32);
+            lblPortsTitle.TabIndex = 0;
+            lblPortsTitle.Text = "Ports";
+            
+            // 
+            // cmbPort1
+            // 
+            cmbPort1.FormattingEnabled = true;
+            cmbPort1.Location = new Point(71, 55);
+            cmbPort1.Name = "cmbPort1";
+            cmbPort1.Size = new Size(117, 25);
+            cmbPort1.TabIndex = 1;
+            
+            // 
+            // lblPort1
+            // 
+            lblPort1.AutoSize = true;
+            lblPort1.Location = new Point(22, 58);
+            lblPort1.Name = "lblPort1";
+            lblPort1.Size = new Size(43, 17);
+            lblPort1.TabIndex = 2;
+            lblPort1.Text = "Port 1";
+            // 
+            // lblPort2
+            // 
+            lblPort2.AutoSize = true;
+            lblPort2.Location = new Point(229, 58);
+            lblPort2.Name = "lblPort2";
+            lblPort2.Size = new Size(43, 17);
+            lblPort2.TabIndex = 3;
+            lblPort2.Text = "Port 2";
+            // 
+            // cmbPort2
+            // 
+            cmbPort2.FormattingEnabled = true;
+            cmbPort2.Location = new Point(278, 55);
+            cmbPort2.Name = "cmbPort2";
+            cmbPort2.Size = new Size(117, 25);
+            cmbPort2.TabIndex = 4;
+            // 
+            // cmbPort3
+            // 
+            cmbPort3.FormattingEnabled = true;
+            cmbPort3.Location = new Point(496, 55);
+            cmbPort3.Name = "cmbPort3";
+            cmbPort3.Size = new Size(117, 25);
+            cmbPort3.TabIndex = 5;
+            // 
+            // lblPort3
+            // 
+            lblPort3.AutoSize = true;
+            lblPort3.Location = new Point(447, 58);
+            lblPort3.Name = "lblPort3";
+            lblPort3.Size = new Size(43, 17);
+            lblPort3.TabIndex = 6;
+            lblPort3.Text = "Port 3";
+            // 
+            // cmbPort4
+            // 
+            cmbPort4.FormattingEnabled = true;
+            cmbPort4.Location = new Point(699, 55);
+            cmbPort4.Name = "cmbPort4";
+            cmbPort4.Size = new Size(117, 25);
+            cmbPort4.TabIndex = 7;
+            // 
+            // lblPort4
+            // 
+            lblPort4.AutoSize = true;
+            lblPort4.Location = new Point(650, 58);
+            lblPort4.Name = "lblPort4";
+            lblPort4.Size = new Size(43, 17);
+            lblPort4.TabIndex = 8;
+            lblPort4.Text = "Port 4";
+            // 
+            // lblBaudRate
+            // 
+            lblBaudRate.AutoSize = true;
+            lblBaudRate.Location = new Point(956, 58);
+            lblBaudRate.Name = "lblBaudRate";
+            lblBaudRate.Size = new Size(74, 17);
+            lblBaudRate.TabIndex = 9;
+            lblBaudRate.Text = "Baud Rate: ";
+            // 
+            // cmbOptionsBaudRate
+            // 
+            cmbOptionsBaudRate.FormattingEnabled = true;
+            cmbOptionsBaudRate.Location = new Point(1036, 55);
+            cmbOptionsBaudRate.Name = "cmbOptionsBaudRate";
+            cmbOptionsBaudRate.Size = new Size(150, 25);
+            cmbOptionsBaudRate.TabIndex = 10;
+            // 
+            // lblDetectedDevicesTitle
+            // 
+            lblDetectedDevicesTitle.AutoSize = true;
+            lblDetectedDevicesTitle.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblDetectedDevicesTitle.Location = new Point(22, 186);
+            lblDetectedDevicesTitle.Name = "lblDetectedDevicesTitle";
+            lblDetectedDevicesTitle.Size = new Size(200, 32);
+            lblDetectedDevicesTitle.TabIndex = 11;
+            lblDetectedDevicesTitle.Text = "Detected Devices";
+            // 
+            // lblTagId
+            // 
+            lblTagId.AutoSize = true;
+            lblTagId.Location = new Point(821, 253);
+            lblTagId.Name = "lblTagId";
+            lblTagId.Size = new Size(48, 17);
+            lblTagId.TabIndex = 12;
+            lblTagId.Text = "Tag ID:";
+            // 
+            // txtTagId
+            // 
+            txtTagId.Location = new Point(875, 250);
+            txtTagId.Name = "txtTagId";
+            txtTagId.ReadOnly = true;
+            txtTagId.Size = new Size(207, 25);
+            txtTagId.TabIndex = 13;
+            // 
+            // lblFriendlyName
+            // 
+            lblFriendlyName.AutoSize = true;
+            lblFriendlyName.Location = new Point(774, 348);
+            lblFriendlyName.Name = "lblFriendlyName";
+            lblFriendlyName.Size = new Size(95, 17);
+            lblFriendlyName.TabIndex = 14;
+            lblFriendlyName.Text = "Friendly Name:";
+            // 
+            // txtFriendlyName
+            // 
+            txtFriendlyName.Location = new Point(875, 345);
+            txtFriendlyName.Name = "txtFriendlyName";
+            txtFriendlyName.Size = new Size(207, 25);
+            txtFriendlyName.TabIndex = 15;
+            // 
+            // btnSaveMapping
+            // 
+            btnSaveMapping.Location = new Point(966, 391);
+            btnSaveMapping.Name = "btnSaveMapping";
+            btnSaveMapping.Size = new Size(116, 34);
+            btnSaveMapping.TabIndex = 17;
+            btnSaveMapping.Text = "Save Mapping";
+            btnSaveMapping.UseVisualStyleBackColor = true;
+            btnSaveMapping.Click += btnSaveMapping_Click;
+            // 
+            // lblSettingsTitle
+            // 
+            lblSettingsTitle.AutoSize = true;
+            lblSettingsTitle.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblSettingsTitle.Location = new Point(22, 506);
+            lblSettingsTitle.Name = "lblSettingsTitle";
+            lblSettingsTitle.Size = new Size(100, 32);
+            lblSettingsTitle.TabIndex = 18;
+            lblSettingsTitle.Text = "Settings";
+            // 
+            // chkAutoConnect
+            // 
+            chkAutoConnect.AutoSize = true;
+            chkAutoConnect.Location = new Point(22, 558);
+            chkAutoConnect.Name = "chkAutoConnect";
+            chkAutoConnect.Size = new Size(171, 21);
+            chkAutoConnect.TabIndex = 20;
+            chkAutoConnect.Text = "Auto-Connect on Startup";
+            chkAutoConnect.UseVisualStyleBackColor = true;
+            // 
+            // lblDeviceFilter
+            // 
+            lblDeviceFilter.AutoSize = true;
+            lblDeviceFilter.Location = new Point(22, 607);
+            lblDeviceFilter.Name = "lblDeviceFilter";
+            lblDeviceFilter.Size = new Size(105, 17);
+            lblDeviceFilter.TabIndex = 21;
+            lblDeviceFilter.Text = "BLE Device Filter:";
+            // 
+            // txtDeviceFilter
+            // 
+            txtDeviceFilter.ForeColor = SystemColors.ScrollBar;
+            txtDeviceFilter.Location = new Point(133, 604);
+            txtDeviceFilter.Name = "txtDeviceFilter";
+            txtDeviceFilter.Size = new Size(127, 25);
+            txtDeviceFilter.TabIndex = 22;
+            txtDeviceFilter.Text = "SafeStep - WB";
+            // 
+            // btnSaveOptions
+            // 
+            btnSaveOptions.Location = new Point(22, 673);
+            btnSaveOptions.Name = "btnSaveOptions";
+            btnSaveOptions.Size = new Size(152, 34);
+            btnSaveOptions.TabIndex = 23;
+            btnSaveOptions.Text = "Save";
+            btnSaveOptions.UseVisualStyleBackColor = true;
+            btnSaveOptions.Click += btnSaveOptions_Click;
+            // 
+            // btnCloseOptions
+            // 
+            btnCloseOptions.Location = new Point(202, 673);
+            btnCloseOptions.Name = "btnCloseOptions";
+            btnCloseOptions.Size = new Size(152, 34);
+            btnCloseOptions.TabIndex = 24;
+            btnCloseOptions.Text = "Close";
+            btnCloseOptions.UseVisualStyleBackColor = true;
+            btnCloseOptions.Click += btnCloseOptions_Click;
+            // 
+            // lstDevices
+            // 
+            lstDevices.FormattingEnabled = true;
+            lstDevices.Location = new Point(22, 250);
+            lstDevices.Name = "lstDevices";
+            lstDevices.Size = new Size(508, 174);
+            lstDevices.TabIndex = 25;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.Location = new Point(875, 186);
+            label1.Name = "label1";
+            label1.Size = new Size(184, 32);
+            label1.TabIndex = 26;
+            label1.Text = "Selected Device";
+            // 
+            // txtDetectedDeviceName
+            // 
+            txtDetectedDeviceName.Location = new Point(875, 300);
+            txtDetectedDeviceName.Name = "txtDetectedDeviceName";
+            txtDetectedDeviceName.ReadOnly = true;
+            txtDetectedDeviceName.Size = new Size(207, 25);
+            txtDetectedDeviceName.TabIndex = 28;
+            // 
+            // lblDetectedDeviceName
+            // 
+            lblDetectedDeviceName.AutoSize = true;
+            lblDetectedDeviceName.Location = new Point(767, 303);
+            lblDetectedDeviceName.Name = "lblDetectedDeviceName";
+            lblDetectedDeviceName.Size = new Size(102, 17);
+            lblDetectedDeviceName.TabIndex = 27;
+            lblDetectedDeviceName.Text = "Detected Name:";
+            
+            // 
+            // btnPairDevice
+            // 
+            btnPairDevice.Location = new Point(844, 391);
+            btnPairDevice.Name = "btnPairDevice";
+            btnPairDevice.Size = new Size(116, 34);
+            btnPairDevice.TabIndex = 29;
+            btnPairDevice.Text = "Pair Device";
+            btnPairDevice.UseVisualStyleBackColor = true;
+            // 
+            // btnRefreshDevices
+            // 
+            btnRefreshDevices.Location = new Point(22, 431);
+            btnRefreshDevices.Name = "btnRefreshDevices";
+            btnRefreshDevices.Size = new Size(139, 34);
+            btnRefreshDevices.TabIndex = 30;
+            btnRefreshDevices.Text = "Refresh Devices";
+            btnRefreshDevices.UseVisualStyleBackColor = true;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(22, 230);
+            label3.Name = "label3";
+            label3.Size = new Size(129, 17);
+            label3.TabIndex = 31;
+            label3.Text = "Scanned BLE Devices";
+            // 
+            // Options
+            // 
+            AutoScaleDimensions = new SizeF(7F, 17F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(1215, 719);
+            Controls.Add(label3);
+            Controls.Add(btnRefreshDevices);
+            Controls.Add(btnPairDevice);
+            Controls.Add(txtDetectedDeviceName);
+            Controls.Add(lblDetectedDeviceName);
+            Controls.Add(label1);
+            Controls.Add(lstDevices);
+            Controls.Add(btnCloseOptions);
+            Controls.Add(btnSaveOptions);
+            Controls.Add(txtDeviceFilter);
+            Controls.Add(lblDeviceFilter);
+            Controls.Add(chkAutoConnect);
+            Controls.Add(lblSettingsTitle);
+            Controls.Add(btnSaveMapping);
+            Controls.Add(txtFriendlyName);
+            Controls.Add(lblFriendlyName);
+            Controls.Add(txtTagId);
+            Controls.Add(lblTagId);
+            Controls.Add(lblDetectedDevicesTitle);
+            Controls.Add(cmbOptionsBaudRate);
+            Controls.Add(lblBaudRate);
+            Controls.Add(lblPort4);
+            Controls.Add(cmbPort4);
+            Controls.Add(lblPort3);
+            Controls.Add(cmbPort3);
+            Controls.Add(cmbPort2);
+            Controls.Add(lblPort2);
+            Controls.Add(lblPort1);
+            Controls.Add(cmbPort1);
+            Controls.Add(lblPortsTitle);
+            Name = "Options";
+            Text = "Options";
+            ResumeLayout(false);
+            PerformLayout();
+        }
+
+        #endregion
+
+        private Label lblPortsTitle;
+        private ComboBox cmbPort1;
+        private Label lblPort1;
+        private Label lblPort2;
+        private ComboBox cmbPort2;
+        private ComboBox cmbPort3;
+        private Label lblPort3;
+        private ComboBox cmbPort4;
+        private Label lblPort4;
+        private Label lblBaudRate;
+        private ComboBox cmbOptionsBaudRate;
+        private Label lblDetectedDevicesTitle;
+        private Label lblTagId;
+        private TextBox txtTagId;
+        private Label lblFriendlyName;
+        private TextBox txtFriendlyName;
+        private Button btnSaveMapping;
+        private Label lblSettingsTitle;
+        private CheckBox chkAutoConnect;
+        private Label lblDeviceFilter;
+        private TextBox txtDeviceFilter;
+        private Button btnSaveOptions;
+        private Button btnCloseOptions;
+        private ListBox lstDevices;
+        private Label label1;
+        private TextBox txtDetectedDeviceName;
+        private Label lblDetectedDeviceName;
+        private Button btnPairDevice;
+        private Button btnRefreshDevices;
+        private Label label3;
+    }
+}

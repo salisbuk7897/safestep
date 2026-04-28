@@ -1,0 +1,73 @@
+﻿using Microsoft.Data.Sqlite;
+using SafeStepDesktop.Models;
+
+namespace SafeStepDesktop.Services
+{
+    /// <summary>
+    /// Handles local SQLite storage for warning logs.
+    /// The database is stored in LocalAppData so logs persist across app restarts.
+    /// </summary>
+    public class WarningLogService
+    {
+        private readonly string _databasePath = Path.Combine(
+            Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+            "SafeStepDesktop",
+            "safestep.db");
+
+        private string ConnectionString => $"Data Source={_databasePath}";
+
+        public void Initialize()
+        {
+            string? directory = Path.GetDirectoryName(_databasePath);
+            if (!string.IsNullOrWhiteSpace(directory))
+                Directory.CreateDirectory(directory);
+
+            using var connection = new SqliteConnection(ConnectionString);
+            connection.Open();
+
+            using var command = connection.CreateCommand();
+            command.CommandText = @"
+CREATE TABLE IF NOT EXISTS WarningLogs (
+    Id INTEGER PRIMARY KEY AUTOINCREMENT,
+    TimestampUtc TEXT NOT NULL,
+    TagId TEXT NOT NULL,
+    TagName TEXT NOT NULL,
+    WarningCode TEXT NOT NULL,
+    ZoneLevel INTEGER NOT NULL,
+    WarningText TEXT NOT NULL,
+    Battery INTEGER NOT NULL,
+    Temperature REAL NOT NULL,
+    Rssi TEXT,
+    IsAlive INTEGER NOT NULL
+);";
+
+            command.ExecuteNonQuery();
+        }
+
+        public void LogWarning(SafeStepMessage message, string warningCode, int zoneLevel, string warningText)
+        {
+            using var connection = new SqliteConnection(ConnectionString);
+            connection.Open();
+
+            using var command = connection.CreateCommand();
+            command.CommandText = @"
+INSERT INTO WarningLogs
+(TimestampUtc, TagId, TagName, WarningCode, ZoneLevel, WarningText, Battery, Temperature, Rssi, IsAlive)
+VALUES
+($timestampUtc, $tagId, $tagName, $warningCode, $zoneLevel, $warningText, $battery, $temperature, $rssi, $isAlive);";
+
+            command.Parameters.AddWithValue("$timestampUtc", DateTime.UtcNow.ToString("O"));
+            command.Parameters.AddWithValue("$tagId", message.TagId);
+            command.Parameters.AddWithValue("$tagName", message.TagName);
+            command.Parameters.AddWithValue("$warningCode", warningCode);
+            command.Parameters.AddWithValue("$zoneLevel", zoneLevel);
+            command.Parameters.AddWithValue("$warningText", warningText);
+            command.Parameters.AddWithValue("$battery", message.Battery);
+            command.Parameters.AddWithValue("$temperature", message.Temperature);
+            command.Parameters.AddWithValue("$rssi", string.IsNullOrWhiteSpace(message.Rssi) ? (object)DBNull.Value : message.Rssi);
+            command.Parameters.AddWithValue("$isAlive", message.IsAlive ? 1 : 0);
+
+            command.ExecuteNonQuery();
+        }
+    }
+}

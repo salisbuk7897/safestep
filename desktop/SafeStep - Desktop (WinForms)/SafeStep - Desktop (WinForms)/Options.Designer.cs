@@ -58,6 +58,13 @@
             btnPairDevice = new Button();
             btnRefreshDevices = new Button();
             label3 = new Label();
+            lblConnectionMode = new Label();
+            rdoLocal = new RadioButton();
+            rdoCloud = new RadioButton();
+            lblFirebaseUrl = new Label();
+            txtFirebaseUrl = new TextBox();
+            lblFirebaseApiKey = new Label();
+            txtFirebaseApiKey = new TextBox();
             SuspendLayout();
             // 
             // lblPortsTitle
@@ -69,7 +76,6 @@
             lblPortsTitle.Size = new Size(66, 32);
             lblPortsTitle.TabIndex = 0;
             lblPortsTitle.Text = "Ports";
-            
             // 
             // cmbPort1
             // 
@@ -78,7 +84,6 @@
             cmbPort1.Name = "cmbPort1";
             cmbPort1.Size = new Size(117, 25);
             cmbPort1.TabIndex = 1;
-            
             // 
             // lblPort1
             // 
@@ -302,7 +307,6 @@
             lblDetectedDeviceName.Size = new Size(102, 17);
             lblDetectedDeviceName.TabIndex = 27;
             lblDetectedDeviceName.Text = "Detected Name:";
-            
             // 
             // btnPairDevice
             // 
@@ -331,11 +335,84 @@
             label3.TabIndex = 31;
             label3.Text = "Scanned BLE Devices";
             // 
+            // lblConnectionMode
+            // 
+            lblConnectionMode.AutoSize = true;
+            lblConnectionMode.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblConnectionMode.Location = new Point(800, 549);
+            lblConnectionMode.Name = "lblConnectionMode";
+            lblConnectionMode.Size = new Size(136, 21);
+            lblConnectionMode.TabIndex = 32;
+            lblConnectionMode.Text = "Connection Mode:";
+            // 
+            // rdoLocal
+            // 
+            rdoLocal.AutoSize = true;
+            rdoLocal.Location = new Point(800, 583);
+            rdoLocal.Name = "rdoLocal";
+            rdoLocal.Size = new Size(102, 21);
+            rdoLocal.TabIndex = 33;
+            rdoLocal.Text = "Local Dongle";
+            rdoLocal.UseVisualStyleBackColor = true;
+            rdoLocal.CheckedChanged += rdoConnectionMode_CheckedChanged;
+            // 
+            // rdoCloud
+            // 
+            rdoCloud.AutoSize = true;
+            rdoCloud.Location = new Point(922, 584);
+            rdoCloud.Name = "rdoCloud";
+            rdoCloud.Size = new Size(121, 21);
+            rdoCloud.TabIndex = 34;
+            rdoCloud.Text = "Cloud (Firebase)";
+            rdoCloud.UseVisualStyleBackColor = true;
+            rdoCloud.CheckedChanged += rdoConnectionMode_CheckedChanged;
+            // 
+            // lblFirebaseUrl
+            // 
+            lblFirebaseUrl.AutoSize = true;
+            lblFirebaseUrl.Location = new Point(800, 623);
+            lblFirebaseUrl.Name = "lblFirebaseUrl";
+            lblFirebaseUrl.Size = new Size(87, 17);
+            lblFirebaseUrl.TabIndex = 35;
+            lblFirebaseUrl.Text = "Firebase URL:";
+            // 
+            // txtFirebaseUrl
+            // 
+            txtFirebaseUrl.Location = new Point(893, 620);
+            txtFirebaseUrl.Name = "txtFirebaseUrl";
+            txtFirebaseUrl.PlaceholderText = "https://your-project-default-rtdb.firebaseio.com/";
+            txtFirebaseUrl.Size = new Size(279, 25);
+            txtFirebaseUrl.TabIndex = 36;
+            // 
+            // lblFirebaseApiKey
+            // 
+            lblFirebaseApiKey.AutoSize = true;
+            lblFirebaseApiKey.Location = new Point(800, 664);
+            lblFirebaseApiKey.Name = "lblFirebaseApiKey";
+            lblFirebaseApiKey.Size = new Size(54, 17);
+            lblFirebaseApiKey.TabIndex = 37;
+            lblFirebaseApiKey.Text = "API Key:";
+            // 
+            // txtFirebaseApiKey
+            // 
+            txtFirebaseApiKey.Location = new Point(860, 661);
+            txtFirebaseApiKey.Name = "txtFirebaseApiKey";
+            txtFirebaseApiKey.PlaceholderText = "Your Firebase API key";
+            txtFirebaseApiKey.Size = new Size(312, 25);
+            txtFirebaseApiKey.TabIndex = 38;
+            // 
             // Options
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1215, 719);
+            ClientSize = new Size(1215, 760);
+            Controls.Add(txtFirebaseApiKey);
+            Controls.Add(lblFirebaseApiKey);
+            Controls.Add(txtFirebaseUrl);
+            Controls.Add(lblFirebaseUrl);
+            Controls.Add(rdoCloud);
+            Controls.Add(rdoLocal);
+            Controls.Add(lblConnectionMode);
             Controls.Add(label3);
             Controls.Add(btnRefreshDevices);
             Controls.Add(btnPairDevice);
@@ -404,5 +481,12 @@
         private Button btnPairDevice;
         private Button btnRefreshDevices;
         private Label label3;
+        private Label lblConnectionMode;
+        private RadioButton rdoLocal;
+        private RadioButton rdoCloud;
+        private Label lblFirebaseUrl;
+        private TextBox txtFirebaseUrl;
+        private Label lblFirebaseApiKey;
+        private TextBox txtFirebaseApiKey;
     }
 }

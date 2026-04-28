@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SafeStep - Desktop (WinForms)")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+84d8c4fc662375809b7fcab984e0b5ebdaa9bd29")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+59623e65ea58781d44bee95d2c9176cc8e781187")]
 [assembly: System.Reflection.AssemblyProductAttribute("SafeStep - Desktop (WinForms)")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SafeStep - Desktop (WinForms)")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
