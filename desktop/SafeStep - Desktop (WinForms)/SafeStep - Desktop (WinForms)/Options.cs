@@ -35,6 +35,12 @@ namespace SafeStep___Desktop__WinForms_
         private readonly List<DetectedDevice> _devices = new();
 
         /// <summary>
+        /// Tracks the currently selected device so scan-driven list refreshes
+        /// do not overwrite the friendly name while the same device is being edited.
+        /// </summary>
+        private string _selectedDeviceTagId = string.Empty;
+
+        /// <summary>
         /// The Windows BLE advertisement watcher.
         /// Runs in the background and fires Watcher_Received every time a
         /// nearby BLE device broadcasts an advertisement packet.
@@ -318,6 +324,7 @@ namespace SafeStep___Desktop__WinForms_
             // If the list is empty, clear the detail fields and stop here
             if (lstDevices.Items.Count == 0)
             {
+                _selectedDeviceTagId = string.Empty;
                 txtTagId.Text = "";
                 txtDetectedDeviceName.Text = "";
                 txtFriendlyName.Text = "";
@@ -346,11 +353,16 @@ namespace SafeStep___Desktop__WinForms_
             if (index < 0 || index >= _devices.Count) return;
 
             var selectedDevice = _devices[index];
+            bool isSameDeviceReselected = string.Equals(_selectedDeviceTagId, selectedDevice.TagId, StringComparison.Ordinal);
 
             // Populate the detail fields with the selected device's data
             txtTagId.Text = selectedDevice.TagId;
             txtDetectedDeviceName.Text = selectedDevice.DetectedName;
-            txtFriendlyName.Text = selectedDevice.FriendlyName;
+
+            if (!txtFriendlyName.Focused || !isSameDeviceReselected)
+                txtFriendlyName.Text = selectedDevice.FriendlyName;
+
+            _selectedDeviceTagId = selectedDevice.TagId;
         }
 
         /// <summary>

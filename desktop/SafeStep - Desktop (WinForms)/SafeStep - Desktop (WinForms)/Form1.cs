@@ -214,6 +214,7 @@ namespace SafeStep___Desktop__WinForms_
                     Parity = Parity.None,
                     StopBits = StopBits.One,
                     ReadTimeout = 500,
+                    WriteTimeout = 1000,
                     NewLine = "\r"
                 };
 
@@ -575,26 +576,57 @@ namespace SafeStep___Desktop__WinForms_
         /// see what was sent and when.
         /// </summary>
         /// <param name="cmd">The command name to send, e.g. "PING", "STATUS", "SOS"</param>
-        private async void SendCommand(string cmd)
+        private async Task<bool> SendCommandAsync(string cmd)
         {
             if (_serialPort == null || !_serialPort.IsOpen)
             {
-                MessageBox.Show("Not connected. Please connect to the dongle first.");
-                return;
+                lblStatus.Text = $"{cmd} failed";
+                lstMessages.Items.Insert(0, "Command failed - not connected to a dongle.");
+                return false;
             }
 
             try
             {
                 string message = $"$CMD,{cmd}";
+                lblStatus.Text = $"Sending {cmd}...";
 
-                // Run WriteLine on a background thread to avoid freezing the UI
-                await Task.Run(() => _serialPort.WriteLine(message));
+                // Run the serial write on a background thread to avoid freezing the UI.
+                // Use an explicit carriage return so the command terminator matches
+                // the rest of the dongle protocol handling.
+                Exception? writeError = await Task.Run(() =>
+                {
+                    try
+                    {
+                        _serialPort.Write($"{message}\r");
+                        return null;
+                    }
+                    catch (Exception ex)
+                    {
+                        return ex;
+                    }
+                });
+
+                if (writeError != null)
+                {
+                    lblStatus.Text = $"{cmd} failed";
+
+                    string friendlyMessage = writeError is TimeoutException
+                        ? $"Command failed - device not responding to {cmd}."
+                        : $"Command failed - {writeError.Message}";
+
+                    lstMessages.Items.Insert(0, friendlyMessage);
+                    return false;
+                }
 
                 lstMessages.Items.Insert(0, $"SENT >>> {message}");
+                lblStatus.Text = $"{cmd} sent";
+                return true;
             }
             catch (Exception ex)
             {
+                lblStatus.Text = $"{cmd} failed";
                 lstMessages.Items.Insert(0, "SEND ERROR: " + ex.Message);
+                return false;
             }
         }
 
@@ -603,9 +635,11 @@ namespace SafeStep___Desktop__WinForms_
         /// PING asks the dongle "are you there?" — the dongle should reply
         /// with a heartbeat or status message to confirm it's alive.
         /// </summary>
-        private void btnPing_Click(object sender, EventArgs e)
+        private async void btnPing_Click(object sender, EventArgs e)
         {
-            SendCommand("PING");
+            lstMessages.Items.Insert(0, "PING >>> Heartbeat requested from dongle");
+            lblStatus.Text = "PING requested";
+            await SendCommandAsync("PING");
         }
 
         /// <summary>
@@ -614,9 +648,11 @@ namespace SafeStep___Desktop__WinForms_
         /// of all paired tags — useful to get a snapshot without waiting
         /// for the next automatic broadcast.
         /// </summary>
-        private void btnStatus_Click(object sender, EventArgs e)
+        private async void btnStatus_Click(object sender, EventArgs e)
         {
-            SendCommand("STATUS");
+            lstMessages.Items.Insert(0, "STATUS >>> Snapshot requested from dongle");
+            lblStatus.Text = "STATUS requested";
+            await SendCommandAsync("STATUS");
         }
 
         /// <summary>
@@ -626,9 +662,12 @@ namespace SafeStep___Desktop__WinForms_
         /// Typically causes the wristband to vibrate/beep and the dongle to
         /// broadcast a priority alert.
         /// </summary>
-        private void btnSos_Click(object sender, EventArgs e)
+        private async void btnSos_Click(object sender, EventArgs e)
         {
-            SendCommand("SOS");
+            lstMessages.Items.Insert(0, "SOS >>> Manual emergency action triggered");
+            TriggerZoneWarning("Manual SOS triggered from desktop", Color.Red);
+            lblStatus.Text = "SOS triggered";
+            await SendCommandAsync("SOS");
         }
 
         /// <summary>
